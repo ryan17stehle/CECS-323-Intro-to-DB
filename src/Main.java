@@ -14,7 +14,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    //push test
+    //push test 2
     public static void main(String[] args) {
         InventorySearch search = new InventorySearch();
         search.setVisible(true);
