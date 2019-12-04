@@ -218,6 +218,104 @@ public class NewCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        Customer primary = new Customer(); //create objects for the applicant
+        boolean invalid = false; //if boolean invalid is true, application status marked as invalid and calculations suspended
+        
+        primary.setFirst(first_name.getText());
+        primary.setLast(last_name.getText());
+        primary.setMiddle(middle_initial.getText());
+        primary.setAddress(address.getText());
+        primary.setZip(zip_code.getText());
+        primary.setHome(home_phone.getText());
+        primary.setWork(work_phone.getText());
+        primary.setEmail(email.getText());
+        primary.setSocial(ssn.getText());
+        if(rb_lease.isSelected())
+            primary.setOS(Customer.ownStatus.leased);
+        else if(Financed.isSelected())
+            primary.setOS(Customer.ownStatus.financed);
+        else if(Purchased.isSelected())
+            primary.setOS(Customer.ownStatus.purchased);
+        primary.setDate(transaction_date.getText());
+
+        //obtain data from the text field and store; check if valid
+       /* primary.setIncome(Float.parseFloat(jTextField8.getText()));
+        if(!primary.validFloat(primary.getIncome(), 0, 1000000000))
+        {
+            jTextField8.setText("INVALID");
+            invalid=true;
+        }*/
+        
+        //obtain data from the text field and store; check if valid
+       /* primary.setPayment(Float.parseFloat(jTextField10.getText()));
+        if(!primary.validFloat(primary.getPayment(), 0, 1000000000))
+        {
+            jTextField10.setText("INVALID");
+            invalid=true;
+        }*/
+        
+        //obtain data from the text field and store; check if valid
+        /*primary.setCarCost(Float.parseFloat(jTextField12.getText()));
+        if(!primary.validFloat(primary.getCarCost(), 0, 2000000000))
+        {
+            jTextField12.setText("INVALID");
+            invalid=true;
+        }*/
+        
+        //obtain data from the text field and store; check if valid
+        /*primary.setTradeIn(Float.parseFloat(jTextField13.getText()));
+        if(!primary.validFloat(primary.getTradeIn(), 0, 2000000000))
+        {
+            jTextField13.setText("INVALID");
+            invalid=true;
+        }*/
+
+        //obtain data from the text field and store; check if valid
+        /*primary.setDownPayment(Float.parseFloat(jTextField14.getText()));
+        if(!primary.validFloat(primary.getDownPayment(), 0, 2000000000))
+        {
+            jTextField14.setText("INVALID");
+            invalid=true;
+        }*/
+        
+        //obtain data from the text field and store; check if valid
+        /*primary.setNumberYears(Integer.parseInt(jTextField15.getText()));
+        if(!primary.validFloat(primary.getNumberYears(), 0, 99))
+        {
+            jTextField15.setText("INVALID");
+            invalid=true;
+        }*/
+
+        //obtain data from the text field and store; check if valid
+        /*primary.setCredit(Integer.parseInt(jTextField16.getText()));
+        if(!primary.validFloat(primary.getCredit(), 0, 900))
+        {
+            jTextField16.setText("INVALID");
+            invalid=true;
+        }*/
+        
+        /*if(invalid) //if invalid, stop calculations
+            jTextField24.setText("INVALID");
+        else
+        {
+            if(!primary.goodCredit()) //if bad credit, deny
+               jTextField24.setText("Denied");
+            else{ //if good credit, approve, calculate, and output
+               jTextField24.setText("Approved!"); 
+               primary.calculate(spouse.getIncome(), spouse.getPayment());
+        
+               jTextField17.setText("$"+String.format("%.2f", primary.getIncomes()));
+               jTextField18.setText("$"+String.format("%.2f", primary.getPayments()));
+               jTextField19.setText("$"+String.format("%.2f", primary.getPaymentIncome()));
+               jTextField20.setText((String.format("%.2f", primary.getInterest()*100))+"%");
+               jTextField21.setText("$"+String.format("%.2f", primary.getCarCost()));
+               jTextField22.setText("$"+String.format("%.2f", primary.getMonthlyPayment()));
+               jTextField23.setText(Integer.toString(primary.getLastDate()));
+            }
+        }*/
+    }                                        
+    
     /**
      * @param args the command line arguments
      */
