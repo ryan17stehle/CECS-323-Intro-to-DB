@@ -19,11 +19,13 @@ public class Customer {
     private String email;
     private String social; //social security number
     public enum ownStatus {leased, financed, purchased}
-    ownStatus OS;
+    private ownStatus OS;
     private String date; //the date in YYYYMMDD form
+    private String income; //monthly income
+    private String lastDate; //date of last payment if all payments made and 
+    //on time at the first of the month
     
-    /*private float income = 0; //monthly income
-    private float payment = 0; //monthly payment
+    /*private float payment = 0; //monthly payment
     private float carCost = 0; //cost of the car
     private float tradeIn = 0; //value of the trade in
     private float downPayment = 0; //up front payment of the car
@@ -34,14 +36,11 @@ public class Customer {
     private float paymentIncome; //ratio of monthly debt payments to income
     private float interest; //interest rate of new loan
     private float loanAmount; //total amount user will owe
-    private float monthlyPayment; //monthly payment of new loan
-    private int lastDate; //date of/dat last payment if all payments made and 
-    //on time at the first of the month
-*/
+    private float monthlyPayment; //monthly payment of new loan*/
+    
     public Customer() {}
     
     //accessors
-
     public String getFirst(){return first;}
     public String getLast() {return last;}
     public String getMiddle() {return middle;}
@@ -52,10 +51,11 @@ public class Customer {
     public String getEmail() {return email;}
     public String getSocial() {return social;}
     public ownStatus getStatus() {return OS;}
-    public String getDate() {return date;}    
+    public String getDate() {return date;}
+    public String getIncome() {return income;}
+    public String getLastDate() {return lastDate;}
     
-    /*public float getIncome() {return income;}
-    public float getPayment() {return payment;}
+    /*public float getPayment() {return payment;}
     public float getCarCost() {return carCost;}
     public float getTradeIn() {return tradeIn;}
     public float getDownPayment() {return downPayment;}
@@ -66,8 +66,7 @@ public class Customer {
     public float getPaymentIncome() {return paymentIncome;}
     public float getInterest() {return interest;}
     public float getLoanAmount() {return loanAmount;}
-    public float getMonthlyPayment() {return monthlyPayment;}
-    public int getLastDate() {return lastDate;}*/
+    public float getMonthlyPayment() {return monthlyPayment;}*/
     
     //mutators
     public void setFirst(String temp) {first = temp;}
@@ -81,9 +80,10 @@ public class Customer {
     public void setSocial(String temp) {social = temp;}
     public void setOS(ownStatus temp) {OS = temp;}
     public void setDate(String temp) {date = temp;}
+    public void setIncome(String temp) {income = temp;}
+    public void setLastDate(String temp) {lastDate = temp;}
     
-    /*public void setIncome(float temp) {income = temp;}
-    public void setPayment(float temp) {payment = temp;}
+    /*public void setPayment(float temp) {payment = temp;}
     public void setCarCost(float temp) {carCost = temp;}
     public void setTradeIn(float temp) {tradeIn = temp;}
     public void setDownPayment(float temp) {downPayment = temp;}
@@ -94,8 +94,7 @@ public class Customer {
     public void setPaymentIncome(float temp) {paymentIncome = temp;}
     public void setInterest(float temp) {interest = temp;}
     public void setLoanAmount(float temp) {loanAmount = temp;}
-    public void setMonthlyPayment(float temp) {monthlyPayment = temp;}
-    public void setLastDate(int temp) {lastDate = temp;}*/
+    public void setMonthlyPayment(float temp) {monthlyPayment = temp;}*/
     
     //checks if the applicant's credit is sufficient
     //precondition: the customer object exists and has credit
