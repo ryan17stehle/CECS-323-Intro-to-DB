@@ -59,8 +59,10 @@ public class NewCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Automobile Sales Management");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Customer Information");
 
         jLabel3.setText("First Name:");
@@ -271,6 +273,9 @@ public class NewCustomer extends javax.swing.JFrame {
             primary.setOS(Customer.ownStatus.purchased);
         primary.setDate(transaction_date.getText());
         primary.setIncome(income.getText());
+        
+        
+        setVisible(false);
         
         //testing
         /*first_name.setText("test" + primary.getFirst());

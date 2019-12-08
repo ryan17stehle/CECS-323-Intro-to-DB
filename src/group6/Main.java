@@ -18,11 +18,11 @@ public class Main {
      */
     //push test 2
     public static void main(String[] args) {
+        Menu menu = new Menu();
+        menu.setVisible(true);
+
         //InventorySearch search = new InventorySearch();
         //search.setVisible(true);
-        
-        NewCustomer NC = new NewCustomer();
-        NC.setVisible(true);
     }
     
 }
