@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 /**
  *
@@ -126,7 +126,7 @@ public class Database {
             
             
             
-            conn.close();
+            //conn.close();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
