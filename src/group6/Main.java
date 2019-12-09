@@ -18,12 +18,14 @@ public class Main {
      */
     //push test 2
     public static void main(String[] args) {
-        Database db = new Database();
-        db.main();
-        
+        MainFrame mf = new MainFrame();
         Menu menu = new Menu();
         menu.setVisible(true);
-
+        mf.setVisible(true);
+        
+        //Database db = new Database();
+        //db.main();
+        
         //InventorySearch search = new InventorySearch();
         //search.setVisible(true);
     }
