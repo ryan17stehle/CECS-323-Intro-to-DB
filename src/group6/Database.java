@@ -2,6 +2,8 @@ package group6;
 
 import java.sql.*;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author Mimi Opkins with some tweaking from Dave Brown
@@ -35,7 +37,7 @@ public class Database {
             return input;
     }
 
-    public static void main(String[] args) {
+    public static void main(){//String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to
         //remove that from the connection string.
