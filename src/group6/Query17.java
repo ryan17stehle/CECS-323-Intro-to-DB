@@ -11,11 +11,15 @@ package group6;
  */
 public class Query17 extends javax.swing.JFrame {
 
+    static String user;
+    static String pass;
     /**
      * Creates new form Query17
      */
-    public Query17() {
+    public Query17(String u, String p) {
         initComponents();
+        user = u;
+        pass = p;
     }
 
     /**
@@ -118,7 +122,7 @@ public class Query17 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Query17().setVisible(true);
+                new Query17(user, pass).setVisible(true);
             }
         });
     }

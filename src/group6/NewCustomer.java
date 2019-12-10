@@ -11,11 +11,15 @@ package group6;
  */
 public class NewCustomer extends javax.swing.JFrame {
 
+    static String user;
+    static String pass;
     /**
      * Creates new form NewCustomer
      */
-    public NewCustomer() {
+    public NewCustomer(String u, String p) {
         initComponents();
+        user = u;
+        pass = p;
     }
 
     /**
@@ -401,7 +405,7 @@ public class NewCustomer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewCustomer().setVisible(true);
+                new NewCustomer(user, pass).setVisible(true);
             }
         });
     }

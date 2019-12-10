@@ -6,11 +6,15 @@ package group6;
  */
 public class Menu extends javax.swing.JFrame {
 
+    static String user;
+    static String pass;
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(String u, String p) {
         initComponents();
+        user = u;
+        pass = p;
     }
 
     /**
@@ -81,25 +85,26 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        NewCustomer NC = new NewCustomer();
+        NewCustomer NC = new NewCustomer(user, pass);
         NC.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Queries query = new Queries();
+        Queries query = new Queries(user, pass);
         query.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info
                     : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -126,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(user, pass).setVisible(true);
             }
         });
     }

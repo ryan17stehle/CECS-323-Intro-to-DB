@@ -12,11 +12,15 @@ import java.util.ArrayList;
  */
 public class Query1 extends javax.swing.JFrame {
 
+    static String user;
+    static String pass;
     /**
      * Creates new form Query1
      */
-    public Query1() {
+    public Query1(String u, String p) {
         initComponents();
+        user = u;
+        pass = p;
     }
 
     /**
@@ -114,7 +118,7 @@ public class Query1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Query1().setVisible(true);
+                new Query1(user, pass).setVisible(true);
             }
         });
     }

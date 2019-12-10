@@ -39,7 +39,7 @@ public class Database {
             return input;
     }
     
-    public static Boolean login(String user, String pass){//String[] args) {
+    public static Boolean login(String user, String pass, int choice){//String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to
         //remove that from the connection string.
@@ -65,7 +65,86 @@ public class Database {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             //conn.setAutoCommit(true);
             
-            initialize(conn);
+            switch(choice)
+            {
+                case 0:
+                {
+                    //initialize/execute DDL&DML
+                    statement(conn, choice);
+                }
+                case 1:
+                {
+                    //query1
+                }
+                case 2:
+                {
+                    //query2
+                }
+                case 3:
+                {
+                    //query3
+                }
+                case 4:
+                {
+                    //query4
+                }
+                case 5:
+                {
+                    //query5
+                }
+                case 6:
+                {
+                    //query6
+                }
+                case 7: 
+                {
+                    //query7
+                }
+                case 8:
+                {
+                    //query8
+                }
+                case 9:
+                {
+                    //query9
+                }
+                case 10:
+                {
+                    //query10
+                }
+                case 11:
+                {
+                    //query11
+                }
+                case 12:
+                {
+                    //query12
+                }
+                case 13:
+                {
+                    //query13
+                }
+                case 14:
+                {
+                    //query14
+                }
+                case 15:
+                {
+                    //query15
+                }
+                case 16:
+                {
+                    //query16
+                }
+                case 17:
+                {
+                    //query17
+                }
+                default:
+                {
+                    System.out.println("switch error");
+                }
+            }
             
             return true;
             //conn.close();
@@ -96,7 +175,7 @@ public class Database {
         return false;
     }
     
-        public static void initialize(Connection conn) {
+    public static void statement(Connection conn, int choice) {
         try {
             PreparedStatement drop = conn.prepareStatement("DROP TABLE IF EXISTS Customers");
             drop.executeUpdate();
