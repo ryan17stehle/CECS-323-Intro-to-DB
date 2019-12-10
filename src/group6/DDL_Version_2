@@ -7,7 +7,7 @@ CREATE TABLE Customers (
   cust_address  VARCHAR(30) NOT NULL,
   zip_code      INTEGER(5)          ,
   cust_email VARCHAR(30)            ,
-  CONSTRAINT pk_customers PRIMARY KEY (cust_id)
+  CONSTRAINT pk_Customers PRIMARY KEY (cust_id)
 );
 
 CREATE TABLE Inventory (
@@ -28,7 +28,7 @@ CREATE TABLE Inventory (
   car_make VARCHAR(20)                  ,
   car_model VARCHAR(20)                 ,
   car_year INTEGER (4)                  , 
-  CONSTRAINT pk_inventory PRIMARY KEY (VIN)
+  CONSTRAINT pk_Inventory PRIMARY KEY (VIN)
 );
 
 CREATE TABLE PhoneNumbers (
@@ -42,7 +42,7 @@ CREATE TABLE ZipLocations (
   zip_code INTEGER(5) NOT NULL,
   city_name VARCHAR(20)            ,
   state_name VARCHAR(20)           ,
-  CONSTRAINT pk_zipLocations PRIMARY KEY (zip_code)
+  CONSTRAINT pk_ZipLocations PRIMARY KEY (zip_code)
 );
 
 CREATE TABLE Employees (
@@ -129,7 +129,7 @@ CREATE TABLE States (
   CONSTRAINT pk_States PRIMARY KEY (state_name)
 );
 
-CREATE TABLE SalariedEmployee (
+CREATE TABLE SalariedEmployees (
   employee_id VARCHAR(10) NOT NULL                            ,
   salary FLOAT                                                ,
   FOREIGN KEY (employee_id) REFERENCES Employees (employee_id),
@@ -156,18 +156,18 @@ CREATE TABLE Certificates (
   employee_id VARCHAR(10) NOT NULL                              ,
   FOREIGN KEY (employee_id) REFERENCES Technicians (employee_id),
   certificate_name VARCHAR(30) NOT NULL                         ,
-  CONSTRAINT pk_Technicians PRIMARY KEY (employee_id, certificate_name)
+  CONSTRAINT pk_Certificates PRIMARY KEY (employee_id, certificate_name)
 );
 
 CREATE TABLE CommissionRateEmployee (
-  employee_id VARCHAR(10)                                     ,
+  employee_id VARCHAR(10) NOT NULL                                     ,
   commission_rate FLOAT                                       ,
   FOREIGN KEY (employee_id) REFERENCES Employees (employee_id),
   CONSTRAINT pk_CommissionRateEmployee PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE Salespersons (
-  employee_id VARCHAR(10)                                                          ,
+  employee_id VARCHAR(10) NOT NULL                                                          ,
   commission_rate FLOAT                                                            ,
   FOREIGN KEY (commission_rate) REFERENCES CommissionRateEmployee (commission_rate),
   FOREIGN KEY (employee_id) REFERENCES Employees (employee_id)                     ,
@@ -188,7 +188,7 @@ CREATE TABLE SalesTransactions (
 );
 
 CREATE TABLE Financing (
-  transaction_id VARCHAR(10)                                                ,
+  transaction_id VARCHAR(20)                                                ,
   FOREIGN KEY (transaction_id) REFERENCES SalesTransactions (transaction_id),
   monthly_amt FLOAT     NOT NULL                                            ,
   date_of_last_payment DATE()                                               ,
@@ -306,26 +306,26 @@ INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, "Ce
 INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, "Home", 714-961-5409");
 
 
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_1, "Ford", "Focus", 2019, "Electric", "Hatchback", "Black");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_2, "Acura", "Integra", 2019, "Hybrid", "4 Door", "White");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_3, "Toyota", "Highlander", 2019, "Gas", "4 Door", "Gray");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_4, "BMW", "330i", 2018, "Gas", "Coupe", "Red");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_5, "Mercedes-Benz", "CLA", 2018, "Gas", "Convertible", "Blue");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_6, "Mercedes-Benz", "GLA", 2012, "Gas", "Coupe", "Black");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_7, "Ford", "F-150", 2012, "Gas", "4 Door", "Gray");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_8, "BMW", "M3", 2011, "Compressed Natural Gas", "Convertible", "Red");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_9, "Chevy", "Volt", 2019, "Hydrogen Fuel Cell", "Hatchback", "White");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_10, "Toyota", "Tacoma", 2013, "Gas", "4 Door", "Blue");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_11, "Hyundai", "Elantra", 2017, "Hybrid", "Hatchback", "Black");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_12, "Nissan", "Sentra", 2014, "Solar", "4 Door", "Gray");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_13, "Dodge", "Charger", 2011, "Gas" "Convertible", "Red");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_14, "Ford", "Fusion", 2019, "Hybrid", "4 Door", "White");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_15, "Hyundai", "Elantra", 2018, "Hybrid", "Hatchback", "Blue");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_16, "Ford", "Focus", 2019, "Electric", "Hatchback", "Black");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_17, "Acura", "Integra", 2019, "Hybrid", "4 Door", "Gray");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_18, "Toyota", "Highlander", 2019, "Gas", "4 Door", "Red");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_19, "BMW", "330i", 2018, "Gas", "Coupe", "White");
-INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (VIN_20, "Mercedes-Benz", "CLA", 2018, "Gas", "Convertible", "Blue");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_1", "Ford", "Focus", 2019, "Electric", "Hatchback", "Black");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_2", "Acura", "Integra", 2019, "Hybrid", "4 Door", "White");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_3", "Toyota", "Highlander", 2019, "Gas", "4 Door", "Gray");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_4", "BMW", "330i", 2018, "Gas", "Coupe", "Red");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_5", "Mercedes-Benz", "CLA", 2018, "Gas", "Convertible", "Blue");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_6", "Mercedes-Benz", "GLA", 2012, "Gas", "Coupe", "Black");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_7", "Ford", "F-150", 2012, "Gas", "4 Door", "Gray");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_8", "BMW", "M3", 2011, "Compressed Natural Gas", "Convertible", "Red");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_9", "Chevy", "Volt", 2019, "Hydrogen Fuel Cell", "Hatchback", "White");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_10", "Toyota", "Tacoma", 2013, "Gas", "4 Door", "Blue");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_11", "Hyundai", "Elantra", 2017, "Hybrid", "Hatchback", "Black");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_12", "Nissan", "Sentra", 2014, "Solar", "4 Door", "Gray");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_13", "Dodge", "Charger", 2011, "Gas" "Convertible", "Red");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_14", "Ford", "Fusion", 2019, "Hybrid", "4 Door", "White");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_15", "Hyundai", "Elantra", 2018, "Hybrid", "Hatchback", "Blue");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_16", "Ford", "Focus", 2019, "Electric", "Hatchback", "Black");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_17", "Acura", "Integra", 2019, "Hybrid", "4 Door", "Gray");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_18", "Toyota", "Highlander", 2019, "Gas", "4 Door", "Red");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_19", "BMW", "330i", 2018, "Gas", "Coupe", "White");
+INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES ("VIN_20", "Mercedes-Benz", "CLA", 2018, "Gas", "Convertible", "Blue");
 		  
 INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_1, emp_1, cust_1, trans_1, '2019-12-01', 24369.00);
 INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_2, emp_2, cust_2, trans_2, '2019-11-03', 21569.00);

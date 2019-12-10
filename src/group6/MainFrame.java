@@ -99,12 +99,13 @@ public class MainFrame extends javax.swing.JFrame {
         user = jTextField1.getText();
         pass = jTextField2.getText();
         Database db = new Database();
-        if(db.login(user, pass))
+        db.login(user, pass);
+        /*if(db.login(user, pass))
         {
             setVisible(false);
             Menu menu = new Menu();
             menu.setVisible(true);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
