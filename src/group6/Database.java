@@ -832,6 +832,46 @@ public class Database {
         }
     }
     
+    public static void View(Connection conn, int choice)
+    {
+        String sql;
+        Statement view; 
+        try {
+            if (choice == 1) {
+                sql = "CREATE VIEW customers_view AS "
+                        + "SELECT c.first_name, c.last_name, p.number as “home phone”, p.number as “cell phone”, i.make, i.model, i.year, s.date, e.first_name, e.middle_name, e.last_name, s.price "
+                        + "FROM customer c inner join "
+                        + "FROM "
+                        + "SELECT p1.custID, p1.phoneNumbers as “home phone” "
+                        + "WHERE p1.phone_type = “home” "
+                        + "NATURAL JOIN "
+                        + "p2.phoneNumbers as “cell phone” "
+                        + "ON p1.custID = c.custID "
+                        + "INNER JOIN salesTransaction s "
+                        + "ON c.custId = s.custID "
+                        + "inner join inventory i "
+                        + "ON s.salesID = i.salesID "
+                        + "WHERE <current_date> - s.date <= 00100000 ";
+                view = conn.createStatement();
+                view.execute(sql);
+                System.out.println("view completed1");
+            }
+            else if(choice == 2)
+            {
+                sql = "CREATE VIEW salespersons_view AS "
+                        + "SELECT e.first_name, e.middle_name, e.last_name, count(s.date), sum(s.price) "
+                        + "FROM employee e inner join salesTransction s "
+                        + "WHERE <current_date> - s.date <= 00010000";
+                view = conn.createStatement();
+                view.execute(sql);
+                System.out.println("view completed2");
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
+    
     public static void AddCust(Connection conn, Customer cust) {
         try {
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
