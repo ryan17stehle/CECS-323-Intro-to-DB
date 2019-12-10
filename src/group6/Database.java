@@ -39,65 +39,6 @@ public class Database {
             return input;
     }
     
-    public static void initialize(Connection conn) {
-        try {
-            PreparedStatement create = conn.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS Customers(" +
-                    "cust_id VARCHAR(10) NOT NULL, " +
-                    "cust_fname VARCHAR(15) NOT NULL, " +
-                    "cust_lname VARCHAR(15) NOT NULL, " +
-                    "cust_mid_ini VARCHAR(1), " +
-                    "cust_ssn VARCHAR(12), " +
-                    "cust_address VARCHAR(30) NOT NULL, " +
-                    "zip_code INTEGER(5), " +
-                    "cust_email VARCHAR(30), " +
-                    "CONSTRAINT pk_customers PRIMARY KEY (cust_id))");
-            create.executeUpdate();
-            System.out.println("create completed");
-
-            String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement posted = conn.prepareStatement(insert);
-            posted.setString(1, "1234567890");
-            posted.setString(2, "Michael");
-            posted.setString(3, "Jee");
-            posted.setString(4, "D");
-            posted.setString(5, "123456789012");
-            posted.setString(6, "123 lolipop rd");
-            posted.setInt(7, 12345);
-            posted.setString(8, "mdj@gmail.com");
-            /*final String one = "1234567890", two = "Michael", three = "Jee", four = "D", five = "123456789012", six = "123 lolipop rd", eight = "mdj@gmail.com";
-            final int seven = 12345;
-            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) " +
-                    "VALUES ('"+one+"', '"+two+"', '"+three+"', '"+four+"', '"+five+"', '"+six+"', '"+seven+"', '"+eight+"')");*/
-            System.out.println("insert completed1");
-            posted.execute();
-            System.out.println("insert completed2");
-            
-            String query = "SELECT * FROM Customers";
-            // create the java statement
-            Statement st = conn.createStatement();
-            // execute the query, and get a java resultset
-            ResultSet rs = st.executeQuery(query);
-            // iterate through the java resultset
-            while (rs.next()) {
-                String cust_id = rs.getString("cust_id");
-                //String firstName = rs.getString("first_name");
-                //String lastName = rs.getString("last_name");
-                //Date dateCreated = rs.getDate("date_created");
-                //boolean isAdmin = rs.getBoolean("is_admin");
-                //int numPoints = rs.getInt("num_points");
-
-                // print the results
-                System.out.format("%i\n", cust_id);
-                //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
-            }
-            System.out.println("successful");
-        } catch (Exception e) {
-            System.out.println("error");
-            e.printStackTrace();
-        }
-    }
-    
     public static Boolean login(String user, String pass){//String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to
@@ -153,5 +94,67 @@ public class Database {
         }//end try
         System.out.println("Goodbye!");
         return false;
-    }//end main
+    }
+    
+        public static void initialize(Connection conn) {
+        try {
+            PreparedStatement drop = conn.prepareStatement("DROP TABLE Customers");
+            drop.executeUpdate();
+            PreparedStatement create = conn.prepareStatement(
+                    "CREATE TABLE IF NOT EXISTS Customers(" +
+                    "cust_id VARCHAR(10) NOT NULL, " +
+                    "cust_fname VARCHAR(15) NOT NULL, " +
+                    "cust_lname VARCHAR(15) NOT NULL, " +
+                    "cust_mid_ini VARCHAR(1), " +
+                    "cust_ssn VARCHAR(12), " +
+                    "cust_address VARCHAR(30) NOT NULL, " +
+                    "zip_code INTEGER(5), " +
+                    "cust_email VARCHAR(30), " +
+                    "CONSTRAINT pk_customers PRIMARY KEY (cust_id))");
+            create.executeUpdate();
+            System.out.println("create completed");
+
+            //String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            posted.setString(1, "1234567890");
+            posted.setString(2, "Michael");
+            posted.setString(3, "Jee");
+            posted.setString(4, "D");
+            posted.setString(5, "123456789012");
+            posted.setString(6, "123 lolipop rd");
+            posted.setInt(7, 12345);
+            posted.setString(8, "mdj@gmail.com");
+            /*final String one = "1234567890", two = "Michael", three = "Jee", four = "D", five = "123456789012", six = "123 lolipop rd", eight = "mdj@gmail.com";
+            final int seven = 12345;
+            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) " +
+                    "VALUES ('"+one+"', '"+two+"', '"+three+"', '"+four+"', '"+five+"', '"+six+"', '"+seven+"', '"+eight+"')");*/
+            System.out.println("insert completed1");
+            posted.executeUpdate();
+            System.out.println("insert completed2");
+            
+            String query = "SELECT * FROM Customers";
+            // create the java statement
+            Statement st = conn.createStatement();
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+            // iterate through the java resultset
+            while (rs.next()) {
+                String cust_id = rs.getString("cust_id");
+                //String firstName = rs.getString("first_name");
+                //String lastName = rs.getString("last_name");
+                //Date dateCreated = rs.getDate("date_created");
+                //boolean isAdmin = rs.getBoolean("is_admin");
+                //int numPoints = rs.getInt("num_points");
+
+                // print the results
+                System.out.format("%s\n", cust_id);
+                //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
+            }
+            System.out.println("successful");
+        } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
+    
 }//end FirstExample}
