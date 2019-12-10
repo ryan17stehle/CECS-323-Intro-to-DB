@@ -9,6 +9,8 @@ package group6;
 
 public class Customer {
 
+    static private int currentID = 1000000000;
+    private String id;
     private String first; //first name
     private String last; //last name
     private String middle;
@@ -38,9 +40,10 @@ public class Customer {
     private float loanAmount; //total amount user will owe
     private float monthlyPayment; //monthly payment of new loan*/
     
-    public Customer() { first = last = middle = address = zip = homePhone = workPhone = email = social = date = income = lastDate; OS = ownStatus.purchased;}
+    public Customer() { ++currentID; id = Integer.toString(currentID); first = last = middle = address = zip = homePhone = workPhone = email = social = date = income = lastDate; OS = ownStatus.purchased;}
     
     //accessors
+    public String getId() {return id;}
     public String getFirst(){return first;}
     public String getLast() {return last;}
     public String getMiddle() {return middle;}
@@ -69,6 +72,7 @@ public class Customer {
     public float getMonthlyPayment() {return monthlyPayment;}*/
     
     //mutators
+    public void setId(String temp) {id = temp;}
     public void setFirst(String temp) {first = temp;}
     public void setLast(String temp) {last = temp;}
     public void setMiddle(String temp) {middle = temp;}

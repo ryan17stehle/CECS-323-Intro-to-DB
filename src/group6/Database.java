@@ -111,8 +111,8 @@ public class Database {
     
     public static void DDL(Connection conn) {
         try {
-            PreparedStatement drop = conn.prepareStatement("DROP TABLE IF EXISTS Customers");
-            drop.executeUpdate();
+            //PreparedStatement drop = conn.prepareStatement("DROP TABLE IF EXISTS Customers");
+            //drop.executeUpdate();
             PreparedStatement create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Customers(" +
                     "cust_id VARCHAR(10) NOT NULL, " +
@@ -127,8 +127,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Inventory");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Inventory");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Inventory(" +
                     "VIN VARCHAR(30) NOT NULL, " +
@@ -152,8 +152,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed2");
 
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS PhoneNumbers");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS PhoneNumbers");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS PhoneNumbers(" +
                     "phone_type VARCHAR(10) NOT NULL, " +
@@ -163,8 +163,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed3");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS ZipLocations");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS ZipLocations");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS ZipLocations(" +
                     "zip_code VARCHAR(5) NOT NULL, " +
@@ -175,8 +175,8 @@ public class Database {
             System.out.println("create completed4");
             
             //fix date format syntax, move foreign key adding to alter statements?
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Employees");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Employees");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Employees(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
@@ -189,15 +189,15 @@ public class Database {
                     "employee_email VARCHAR(30), " +
                     "department VARCHAR(15), " +
                     "current_position VARCHAR(15), " +
-                    "hire_date DATE(dd.mm.yyyy), " +
+                    "hire_date DATE(), " +
                     "unused_vacation_days INTEGER(1), " +
                     "benefits_premium VARCHAR(10), " +
                     "CONSTRAINT pl_Employees PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed5");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Dependents");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Dependents");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Dependents(" +
                     "dependent_fname VARCHAR(20) NOT NULL, " +
@@ -208,8 +208,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed6");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS EmergencyContacts");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS EmergencyContacts");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS EmergencyContacts(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
@@ -221,8 +221,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed7");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Colors");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Colors");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Colors(" +
                     "car_color VARCHAR(15) NOT NULL, " +
@@ -230,8 +230,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed8");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS BodyStyle");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS BodyStyle");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS BodyStyles(" +
                     "body_style VARCHAR(15) NOT NULL, " +
@@ -239,8 +239,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed9");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Sunroof");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Sunroof");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Sunroof(" +
                     "sun_roof VARCHAR(10) NOT NULL, " +
@@ -248,8 +248,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed10");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS LeatherInterior");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS LeatherInterior");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS LeatherInterior(" +
                     "leather_interior VARCHAR(10) NOT NULL, " +
@@ -257,8 +257,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed11");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS NewUsed");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS NewUsed");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS NewUsed(" +
                     "new_used VARCHAR(5) NOT NULL, " +
@@ -266,8 +266,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed12");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS FuelType");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS FuelType");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS FuelTypes(" +
                     "fuel_type VARCHAR(30) NOT NULL, " +
@@ -275,8 +275,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed13");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Makes");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Makes");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Makes(" +
                     "car_make VARCHAR(15) NOT NULL, " +
@@ -284,8 +284,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed14");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Models");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Models");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Models(" +
                     "car_model VARCHAR(15) NOT NULL, " +
@@ -293,8 +293,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed15");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Years");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Years");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Years(" +
                     "car_year VARCHAR(15) NOT NULL, " +
@@ -302,8 +302,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed16");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS States");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS States");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS States(" +
                     "state_name VARCHAR(20) NOT NULL, " +
@@ -311,43 +311,43 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed17");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS SalariedEmployee");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS SalariedEmployee");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS SalariedEmployees(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
-                    "salary Float, " +
+                    "salary Float NOT NULL, " +
                     "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
                     "CONSTRAINT pk_SalariedEmployees PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed18");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Managers");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Managers");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Managers(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "salary Float, " +
-                    "FOREIGN KEY (salary) REFERENCES SalariedEmployee (salary), " +
+                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees (salary), " +
                     "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
                     "CONSTRAINT pk_Managers PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed19");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Technicians");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Technicians");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Technicians(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "salary Float, " +
-                    "FOREIGN KEY (salary) REFERENCES SalariedEmployee (salary), " +
+                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees (salary), " +
                     "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
                     "CONSTRAINT pk_Technicians PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed20");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Certificates");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Certificates");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Certificates(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
@@ -357,8 +357,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed21");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS CommissionRateEmployee");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS CommissionRateEmployee");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS CommissionRateEmployee(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
@@ -368,8 +368,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed22");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Salespersons");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Salespersons");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Salespersons(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
@@ -380,8 +380,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed23");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS SalesTransactions");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS SalesTransactions");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS SalesTransactions(" +
                     "VIN VARCHAR(30) NOT NULL, " +
@@ -397,8 +397,8 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed24");
             
-            drop = conn.prepareStatement("DROP TABLE IF EXISTS Financing");
-            drop.executeUpdate();
+            //drop = conn.prepareStatement("DROP TABLE IF EXISTS Financing");
+            //drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Financing(" +
                     "transaction_id VARCHAR(20), " +
@@ -787,7 +787,7 @@ public class Database {
     public static void AddCust(Connection conn, Customer cust) {
         try {
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            posted.setString(1, " ");//generated custid);
+            posted.setString(1, cust.getId()); //generated custid);
             posted.setString(2, cust.getFirst());
             posted.setString(3, cust.getLast());
             posted.setString(4, cust.getMiddle());
