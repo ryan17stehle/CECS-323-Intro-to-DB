@@ -65,86 +65,14 @@ public class Database {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             //conn.setAutoCommit(true);
             
-            switch(choice)
+            if(choice == 0)
             {
-                case 0:
-                {
-                    //initialize/execute DDL&DML
-                    statement(conn, choice);
-                }
-                case 1:
-                {
-                    //query1
-                }
-                case 2:
-                {
-                    //query2
-                }
-                case 3:
-                {
-                    //query3
-                }
-                case 4:
-                {
-                    //query4
-                }
-                case 5:
-                {
-                    //query5
-                }
-                case 6:
-                {
-                    //query6
-                }
-                case 7: 
-                {
-                    //query7
-                }
-                case 8:
-                {
-                    //query8
-                }
-                case 9:
-                {
-                    //query9
-                }
-                case 10:
-                {
-                    //query10
-                }
-                case 11:
-                {
-                    //query11
-                }
-                case 12:
-                {
-                    //query12
-                }
-                case 13:
-                {
-                    //query13
-                }
-                case 14:
-                {
-                    //query14
-                }
-                case 15:
-                {
-                    //query15
-                }
-                case 16:
-                {
-                    //query16
-                }
-                case 17:
-                {
-                    //query17
-                }
-                default:
-                {
-                    System.out.println("switch error");
-                }
+                //initialize/execute DDL&DML
+                DDL(conn);
+                DML(conn);
             }
+            else
+                Query(conn, choice);
             
             return true;
             //conn.close();
@@ -175,7 +103,7 @@ public class Database {
         return false;
     }
     
-    public static void statement(Connection conn, int choice) {
+    public static void DDL(Connection conn) {
         try {
             PreparedStatement drop = conn.prepareStatement("DROP TABLE IF EXISTS Customers");
             drop.executeUpdate();
@@ -474,6 +402,15 @@ public class Database {
                     "CONSTRAINT pk_Financing PRIMARY KEY (transaction_id))");
             create.executeUpdate();
             System.out.println("create completed25");
+        } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
+    
+    public static void DML(Connection conn) {
+        try {
+            
             
             //String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -490,31 +427,113 @@ public class Database {
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) " +
                     "VALUES ('"+one+"', '"+two+"', '"+three+"', '"+four+"', '"+five+"', '"+six+"', '"+seven+"', '"+eight+"')");*/
             posted.executeUpdate();
-            System.out.println("insert completed1");
-            
-            String query = "SELECT * FROM Customers";
-            // create the java statement
-            Statement st = conn.createStatement();
-            // execute the query, and get a java resultset
-            ResultSet rs = st.executeQuery(query);
-            // iterate through the java resultset
-            while (rs.next()) {
-                String cust_id = rs.getString("cust_id");
-                //String firstName = rs.getString("first_name");
-                //String lastName = rs.getString("last_name");
-                //Date dateCreated = rs.getDate("date_created");
-                //boolean isAdmin = rs.getBoolean("is_admin");
-                //int numPoints = rs.getInt("num_points");
-
-                // print the results
-                System.out.format("%s\n", cust_id);
-                //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
-            }
-            System.out.println("select completed1");
+            System.out.println("insert completed");
         } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();
         }
     }
     
+    public static void Query(Connection conn, int choice) {
+        try {
+            switch(choice)
+            {
+                case 1:
+                {
+                    //query1
+                }
+                case 2:
+                {
+                    //query2
+                }
+                case 3:
+                {
+                    //query3
+                }
+                case 4:
+                {
+                    //query4
+                }
+                case 5:
+                {
+                    //query5
+                }
+                case 6:
+                {
+                    //query6
+                }
+                case 7: 
+                {
+                    //query7
+                }
+                case 8:
+                {
+                    //query8
+                }
+                case 9:
+                {
+                    //query9
+                }
+                case 10:
+                {
+                    //query10
+                }
+                case 11:
+                {
+                    //query11
+                }
+                case 12:
+                {
+                    //query12
+                }
+                case 13:
+                {
+                    //query13
+                }
+                case 14:
+                {
+                    //query14
+                }
+                case 15:
+                {
+                    //query15
+                }
+                case 16:
+                {
+                    //query16
+                }
+                case 17:
+                {
+                    //query17
+                }
+                default:
+                {
+                    System.out.println("switch error");
+                    String query = "SELECT * FROM Customers";
+                    // create the java statement
+                    Statement st = conn.createStatement();
+                    // execute the query, and get a java resultset
+                    ResultSet rs = st.executeQuery(query);
+                    // iterate through the java resultset
+                    while (rs.next()) {
+                        String cust_id = rs.getString("cust_id");
+                        //String firstName = rs.getString("first_name");
+                        //String lastName = rs.getString("last_name");
+                        //Date dateCreated = rs.getDate("date_created");
+                        //boolean isAdmin = rs.getBoolean("is_admin");
+                        //int numPoints = rs.getInt("num_points");
+
+                        // print the results
+                        System.out.format("%s\n", cust_id);
+                        //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
+                    }
+                }
+            }
+            //posted.executeUpdate();
+            System.out.println("select completed");
+        } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
 }//end FirstExample}
