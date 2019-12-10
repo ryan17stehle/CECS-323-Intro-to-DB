@@ -189,7 +189,7 @@ public class Database {
                     "employee_email VARCHAR(30), " +
                     "department VARCHAR(15), " +
                     "current_position VARCHAR(15), " +
-                    "hire_date DATE(), " +
+                    "hire_date DATE, " +
                     "unused_vacation_days INTEGER(1), " +
                     "benefits_premium VARCHAR(10), " +
                     "CONSTRAINT pl_Employees PRIMARY KEY (employee_id))");
@@ -386,13 +386,13 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS SalesTransactions(" +
                     "VIN VARCHAR(30) NOT NULL, " +
                     "employee_id VARCHAR(10) NOT NULL, " +
-                    "cust_id VARCHAR (10) NOT NULL, " +
+                    "cust_id VARCHAR (10), " +
                     "FOREIGN KEY (VIN) REFERENCES Inventory (VIN), " +
                     "FOREIGN KEY (employee_id) REFERENCES Salespersons (employee_id), " + 
                     "FOREIGN KEY (cust_id) REFERENCES Customers (cust_id), " +
                     "transaction_id VARCHAR(20) NOT NULL, " + 
-                    "purchase_date DATE() NOT NULL, " +
-                    "sale_amt FLOAT NOT NULL, " +
+                    "purchase_date DATE NOT NULL, " +
+                    "sale_amt Float NOT NULL, " +
                     "CONSTRAINT pk_SalesTransactions PRIMARY KEY (transaction_id, purchase_date, sale_amt))");
             create.executeUpdate();
             System.out.println("create completed24");
@@ -403,8 +403,8 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS Financing(" +
                     "transaction_id VARCHAR(20), " +
                     "FOREIGN KEY (transaction_id) REFERENCES SalesTransactions (transaction_id), " +
-                    "monthly_amt FLOAT NOT NULL, " +
-                    "date_of_last_payment DATE()" +
+                    "monthly_amt Float NOT NULL, " +
+                    "date_of_last_payment DATE, " +
                     "CONSTRAINT pk_Financing PRIMARY KEY (transaction_id))");
             create.executeUpdate();
             System.out.println("create completed25");
@@ -421,91 +421,108 @@ public class Database {
                     "FOREIGN KEY (body_style), " +
                     "REFERENCES BodyStyles (body_style)";
             alter.execute(sql);
+            System.out.println("alter completed");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_Sunroof_fk, " +
                     "FOREIGN KEY (sun_roof), " +
                     "REFERENCES Sunroof (sun_roof)";
             alter.execute(sql);
+            System.out.println("alter completed2");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_LeatherInterior_fk, " +
                     "FOREIGN KEY (leather_inerior), " +
                     "REFERENCES LeatherInterior (leather_interior)";
             alter.execute(sql);
+            System.out.println("alter completed3");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_NewUsed_fk, " +
                     "FOREIGN KEY (new_used), " +
                     "REFERENCES NewUsed (new_used)";
             alter.execute(sql);
+            System.out.println("alter completed4");
             
             sql = "ALTER TABLE Inventory, " + 
                     "ADD CONSTRAINT Inventory_FuelTypes_fk, " +
                     "FOREIGN KEY (fuel_type), " +
                     "REFERENCES FuelTypes (fuel_type)";
             alter.execute(sql);
+            System.out.println("alter completed5");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_Makes_fk, " +
                     "FOREIGN KEY (car_make), " +
                     "REFERENCES Makes (car_make)";
             alter.execute(sql);
+            System.out.println("alter completed6");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_Models_fk, " +
                     "FOREIGN KEY (car_model), " +
                     "REFERENCES Models (car_model)";
             alter.execute(sql);
+            System.out.println("alter completed7");
             
             sql = "ALTER TABLE Inventory, " +
                     "ADD CONSTRAINT Inventory_Years_fk, " +
                     "FOREIGN KEY (car_year), " +
                     "REFERENCES Years (car_year)";
             alter.execute(sql);
+            System.out.println("alter completed8");
             
             sql = "ALTER TABLE ZipLocations, " + 
                     "ADD CONSTRAINT ZipLocations_States_fk, " + 
                     "FOREIGN KEY (state_name), " + 
                     "REFERENCES States (state_name)";
             alter.execute(sql);
+            System.out.println("alter completed9");
             
             sql = "ALTER TABLE Dependents, ADD CONSTRAINT Dependents_Employees_fk, FOREIGN KEY (employee_id), REFERENCES Employees (employee_id)";
             alter.execute(sql);
+            System.out.println("alter completed10");
             
             sql = "ALTER TABLE CUSTOMERS, ADD CONSTRAINT Customers_ZipLocations_fk, FOREIGN KEY (zip_code), " +
                     "REFERENCES ZipLocations (zip_code)";
             alter.execute(sql);
+            System.out.println("alter completed11");
             
             sql = "ALTER TABLE Employees, ADD CONSTRAINT Employees_ZipLocations_fk, FOREIGN KEY (zip_code), " + 
                     "REFERENCES ZipLocations (zip_code)";
             alter.execute(sql);
+            System.out.println("alter completed12");
             
             sql = "ALTER TABLE EmergencyContacts, ADD CONSTRAINT EmergencyContacts_ZipLocations_fk, FOREIGN KEY (zip_code), " +
                     "REFERENCES ZipLocations (zip_code)";
             alter.execute(sql);
+            System.out.println("alter completed13");
             
             sql = "ALTER TABLE EmergencyContacts, CONSTRAINT EmergencyContacts_Employees_fkn, FOREIGN KEY (employee_id), " +
                     "REFERENCES Employees (employee_id)";
             alter.execute(sql);
+            System.out.println("alter completed14");
            
             sql = "ALTER TABLE PhoneNumbers, " +
                     "ADD CONSTRAINT PhoneNumbers_Customers_fk, " +
                     "FOREIGN KEY (cust_id), " +
                     "REFERENCES Customers (cust_id)";
             alter.execute(sql);
+            System.out.println("alter completed15");
             
             sql = "ALTER TABLE PhoneNumbers, " +
                     "ADD CONSTRAINT PhoneNumbers_Employees_fk, " +
                     "FOREIGN KEY (employee_id), " +
                     "REFERENCES Employees (employee_id)";
             alter.execute(sql);
+            System.out.println("alter completed16");
             
             sql = "ALTER TABLE PhoneNumbers, " +
                     "ADD CONSTRAINT PhoneNumbers_EmergencyContacts_fk, " +
                     "FOREIGN KEY (emer_cont_id), " +
                     "REFERENCES EmergencyContacts (emer_cont_id)";
             alter.execute(sql);
+            System.out.println("alter completed17");
             
         } catch (Exception e) {
             System.out.println("error");
@@ -522,6 +539,7 @@ public class Database {
             insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_3, \"Andy\", \"Dalton\", \"416 Chevy Hill\")");
             insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_4, \"Rick\", \"James\", \"523 Blueberry Blvd\")");
             insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_5, \"Bobby\", \"Brown\", \"888 Sunshine Lane\")");
+            System.out.println("customer inserted");
             
             // phone numbers
             insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_1, \"Cell\", 714-624-3888\")");
@@ -534,6 +552,7 @@ public class Database {
             insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_4, \"Home\", 714-963-5422\")");
             insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Cell\", 714-624-6437\")");
             insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Home\", 714-961-5409\")");
+            System.out.println("phone inserted");
             
             //inventory
             insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_1\", \"Ford\", \"Focus\", 2019, \"Electric\", \"Hatchback\", \"Black\")");
@@ -556,6 +575,7 @@ public class Database {
             insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_18\", \"Toyota\", \"Highlander\", 2019, \"Gas\", \"4 Door\", \"Red\")");
             insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_19\", \"BMW\", \"330i\", 2018, \"Gas\", \"Coupe\", \"White\")");
             insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_20\", \"Mercedes-Benz\", \"CLA\", 2018, \"Gas\", \"Convertible\", \"Blue\")");
+            System.out.println("inventory inserted");
             
             // salestranscation
             insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_1, emp_1, cust_1, trans_1, '2019-12-01', 24369.00)");
@@ -578,16 +598,19 @@ public class Database {
             insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_18, emp_2, cust_5, trans_18, '2019-12-24', 23789.00)");
             insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_19, emp_3, cust_1, trans_19, '2018-10-22', 22800.00)");
             insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_20, emp_2, cust_2, trans_20, '2018-07-27', 19999.00)");
+            System.out.println("salesTrans inserted");
             
             // employees
             insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_4, \"Stan\", \"Marsh\", 1, \"Customer Service\")");
             insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_5, \"Eric\", \"Cartman\", 4, \"Customer Service\")");
             insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_6, \"Kyle\", \"Broflovski\", 3, \"Customer Service\")");
+            System.out.println("employees inserted");
             
             // technicians
             insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_7, \"Kyle\", \"Romanov\", 60000.00)");
             insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_8, \"Dan\", \"Brow\", 62500.00)");
             insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_9, \"Mitch\", \"Rapp\", 85000.00)");
+            System.out.println("technicians inserted");
             
             // certificates
             insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Oil Change Certificate\")");
@@ -596,12 +619,13 @@ public class Database {
             insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_8, \"Tire Rotation Certificate\")");
             insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Tire Rotation Certificate\")");
             insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Oil Change Certificate\")");
-            
+            System.out.println("certificates inserted");
             
             //salespersons
             insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_1, \"Thomas\", \"Stansfield\")");
             insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_2, \"Scott\", \"Coleman\")");
             insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_3, \"Mick\", \"Reavers\")");
+            System.out.println("salespersons inserted");
             
             //colors
             insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Black\")");
@@ -609,6 +633,7 @@ public class Database {
             insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Red\")");
             insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Blue\")");
             insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"White\")");
+            System.out.println("colors inserted");
             
             // fuel types
             insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Gas\")");
@@ -617,6 +642,7 @@ public class Database {
             insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Compressed Natural Gas\")");
             insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Hydrogen Fuel Cell\")");
             insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Solar\")");
+            System.out.println("fuelTypes inserted");
             
             //body styles
             insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"4 Door\")");
@@ -624,6 +650,7 @@ public class Database {
             insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Station Wagon\")");
             insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Convertible\")");
             insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Hatchback\")");
+            System.out.println("bodyStyles inserted");
             
             /*//String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
