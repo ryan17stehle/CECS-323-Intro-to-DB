@@ -39,7 +39,7 @@ public class Database {
             return input;
     }
     
-    public static Boolean login(String user, String pass, int choice){//String[] args) {
+    public static Boolean Database(String user, String pass, int choice, Customer cust){//String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to
         //remove that from the connection string.
@@ -70,6 +70,10 @@ public class Database {
                 //initialize/execute DDL&DML
                 DDL(conn);
                 DML(conn);
+            }
+            else if(choice == -1)
+            {
+                AddCust(conn, cust);
             }
             else
                 Query(conn, choice);
@@ -115,7 +119,7 @@ public class Database {
                     "cust_mid_ini VARCHAR(1), " +
                     "cust_ssn VARCHAR(12), " +
                     "cust_address VARCHAR(30) NOT NULL, " +
-                    "zip_code INTEGER(5), " +
+                    "zip_code VARCHAR(5), " +
                     "cust_email VARCHAR(30), " +
                     "CONSTRAINT pk_Customers PRIMARY KEY (cust_id))");
             create.executeUpdate();
@@ -161,7 +165,7 @@ public class Database {
             drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS ZipLocations(" +
-                    "zip_code INTEGER(5) NOT NULL, " +
+                    "zip_code VARCHAR(5) NOT NULL, " +
                     "city_name VARCHAR(20), " +
                     "state_name VARCHAR(20), " +
                     "CONSTRAINT pk_ZipLocations PRIMARY KEY (zip_code))");
@@ -179,7 +183,7 @@ public class Database {
                     "employee_mid_ini VARCHAR(1), " +
                     "employee_ssn VARCHAR(12), " +
                     "employee_address VARCHAR(30), " +
-                    "zip_code INTEGER(5), " +
+                    "zip_code VARCHAR(5), " +
                     "employee_email VARCHAR(30), " +
                     "department VARCHAR(15), " +
                     "current_position VARCHAR(15), " +
@@ -210,7 +214,7 @@ public class Database {
                     "emer_cont_fname VARCHAR(20) NOT NULL, " +
                     "emer_cont_lname VARCHAR(20) NOT NULL, " +
                     "emer_cont_address VARCHAR(20), " +
-                    "zip_code INTEGER(5), " +
+                    "zip_code VARCHAR(5), " +
                     "CONSTRAINT pk_EmergencyContacts PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed7");
@@ -402,6 +406,105 @@ public class Database {
                     "CONSTRAINT pk_Financing PRIMARY KEY (transaction_id))");
             create.executeUpdate();
             System.out.println("create completed25");
+            
+            String sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_Colors_fk, " +
+                    "FOREIGN KEY (car_color), " +
+                    "REFERENCES Colors (car_color)";
+            Statement alter = conn.createStatement();
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_BodyStyles_fk, " +
+                    "FOREIGN KEY (body_style), " +
+                    "REFERENCES BodyStyles (body_style)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_Sunroof_fk, " +
+                    "FOREIGN KEY (sun_roof), " +
+                    "REFERENCES Sunroof (sun_roof)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_LeatherInterior_fk, " +
+                    "FOREIGN KEY (leather_inerior), " +
+                    "REFERENCES LeatherInterior (leather_interior)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_NewUsed_fk, " +
+                    "FOREIGN KEY (new_used), " +
+                    "REFERENCES NewUsed (new_used)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " + 
+                    "ADD CONSTRAINT Inventory_FuelTypes_fk, " +
+                    "FOREIGN KEY (fuel_type), " +
+                    "REFERENCES FuelTypes (fuel_type)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_Makes_fk, " +
+                    "FOREIGN KEY (car_make), " +
+                    "REFERENCES Makes (car_make)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_Models_fk, " +
+                    "FOREIGN KEY (car_model), " +
+                    "REFERENCES Models (car_model)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Inventory, " +
+                    "ADD CONSTRAINT Inventory_Years_fk, " +
+                    "FOREIGN KEY (car_year), " +
+                    "REFERENCES Years (car_year)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE ZipLocations, " + 
+                    "ADD CONSTRAINT ZipLocations_States_fk, " + 
+                    "FOREIGN KEY (state_name), " + 
+                    "REFERENCES States (state_name)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Dependents, ADD CONSTRAINT Dependents_Employees_fk, FOREIGN KEY (employee_id), REFERENCES Employees (employee_id)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE CUSTOMERS, ADD CONSTRAINT Customers_ZipLocations_fk, FOREIGN KEY (zip_code), " +
+                    "REFERENCES ZipLocations (zip_code)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE Employees, ADD CONSTRAINT Employees_ZipLocations_fk, FOREIGN KEY (zip_code), " + 
+                    "REFERENCES ZipLocations (zip_code)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE EmergencyContacts, ADD CONSTRAINT EmergencyContacts_ZipLocations_fk, FOREIGN KEY (zip_code), " +
+                    "REFERENCES ZipLocations (zip_code)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE EmergencyContacts, CONSTRAINT EmergencyContacts_Employees_fkn, FOREIGN KEY (employee_id), " +
+                    "REFERENCES Employees (employee_id)";
+            alter.execute(sql);
+           
+            sql = "ALTER TABLE PhoneNumbers, " +
+                    "ADD CONSTRAINT PhoneNumbers_Customers_fk, " +
+                    "FOREIGN KEY (cust_id), " +
+                    "REFERENCES Customers (cust_id)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE PhoneNumbers, " +
+                    "ADD CONSTRAINT PhoneNumbers_Employees_fk, " +
+                    "FOREIGN KEY (employee_id), " +
+                    "REFERENCES Employees (employee_id)";
+            alter.execute(sql);
+            
+            sql = "ALTER TABLE PhoneNumbers, " +
+                    "ADD CONSTRAINT PhoneNumbers_EmergencyContacts_fk, " +
+                    "FOREIGN KEY (emer_cont_id), " +
+                    "REFERENCES EmergencyContacts (emer_cont_id)";
+            alter.execute(sql);
+            
         } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();
@@ -420,7 +523,7 @@ public class Database {
             posted.setString(4, "D");
             posted.setString(5, "123456789012");
             posted.setString(6, "123 lolipop rd");
-            posted.setInt(7, 12345);
+            posted.setString(7, "12345");
             posted.setString(8, "mdj@gmail.com");
             /*final String one = "1234567890", two = "Michael", three = "Jee", four = "D", five = "123456789012", six = "123 lolipop rd", eight = "mdj@gmail.com";
             final int seven = 12345;
@@ -441,70 +544,87 @@ public class Database {
                 case 1:
                 {
                     //query1
+                    System.out.println("query1");
                 }
                 case 2:
                 {
                     //query2
+                    System.out.println("query2");
                 }
                 case 3:
                 {
                     //query3
+                    System.out.println("query3");
                 }
                 case 4:
                 {
                     //query4
+                    System.out.println("query4");
                 }
                 case 5:
                 {
                     //query5
+                    System.out.println("query5");
                 }
                 case 6:
                 {
                     //query6
+                    System.out.println("query6");
                 }
                 case 7: 
                 {
                     //query7
+                    System.out.println("query7");
                 }
                 case 8:
                 {
                     //query8
+                    System.out.println("query8");
                 }
                 case 9:
                 {
                     //query9
+                    System.out.println("query9");
                 }
                 case 10:
                 {
                     //query10
+                    System.out.println("query10");
                 }
                 case 11:
                 {
                     //query11
+                    System.out.println("query11");
                 }
                 case 12:
                 {
                     //query12
+                    System.out.println("query12");
                 }
                 case 13:
                 {
                     //query13
+                    System.out.println("query13");
                 }
                 case 14:
                 {
                     //query14
+                    System.out.println("query14");
                 }
                 case 15:
                 {
                     //query15
+                    System.out.println("query15");
                 }
                 case 16:
                 {
                     //query16
+                    System.out.println("query16");
                 }
                 case 17:
                 {
                     //query17
+                    System.out.println("query17");
                 }
                 default:
                 {
@@ -532,6 +652,26 @@ public class Database {
             //posted.executeUpdate();
             System.out.println("select completed");
         } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
+    
+    public static void AddCust(Connection conn, Customer cust) {
+        try {
+            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            posted.setString(1, " ");//generated custid);
+            posted.setString(2, cust.getFirst());
+            posted.setString(3, cust.getLast());
+            posted.setString(4, cust.getMiddle());
+            posted.setString(5, cust.getSocial());
+            posted.setString(6, cust.getAddress());
+            posted.setString(7, cust.getZip());
+            posted.setString(8, cust.getEmail());
+            posted.executeUpdate();
+            
+            System.out.println("added");
+            } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();
         }

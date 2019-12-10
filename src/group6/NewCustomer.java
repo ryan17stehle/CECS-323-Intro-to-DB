@@ -278,6 +278,9 @@ public class NewCustomer extends javax.swing.JFrame {
         primary.setDate(transaction_date.getText());
         primary.setIncome(income.getText());
         
+        Database db = new Database();
+        db.Database(user, pass, -1, primary);
+        
         setVisible(false);
         
         //testing

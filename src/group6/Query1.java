@@ -1,11 +1,5 @@
 package group6;
 
-import java.sql.*;
-import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ArrayList;
-
 /**
  *
  * @author Michael
@@ -21,6 +15,9 @@ public class Query1 extends javax.swing.JFrame {
         initComponents();
         user = u;
         pass = p;
+        Database db = new Database();
+        Customer dummy = new Customer();
+        db.Database(user, pass, 1, dummy);
     }
 
     /**

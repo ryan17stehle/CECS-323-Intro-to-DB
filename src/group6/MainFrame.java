@@ -96,11 +96,12 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String user, pass;
+        Customer dummy = new Customer();
         user = jTextField1.getText();
         pass = jTextField2.getText();
         Database db = new Database();
         //db.login(user, pass);
-        if(db.login(user, pass, 0))
+        if(db.Database(user, pass, 0, dummy))
         {
             setVisible(false);
             Menu menu = new Menu(user, pass);

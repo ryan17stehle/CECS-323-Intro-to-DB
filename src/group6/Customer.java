@@ -38,7 +38,7 @@ public class Customer {
     private float loanAmount; //total amount user will owe
     private float monthlyPayment; //monthly payment of new loan*/
     
-    public Customer() {}
+    public Customer() { first = last = middle = address = zip = homePhone = workPhone = email = social = date = income = lastDate; OS = ownStatus.purchased;}
     
     //accessors
     public String getFirst(){return first;}

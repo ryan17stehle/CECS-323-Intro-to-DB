@@ -20,6 +20,9 @@ public class Query9 extends javax.swing.JFrame {
         initComponents();
         user = u;
         pass = p;
+        Database db = new Database();
+        Customer dummy = new Customer();
+        db.Database(user, pass, 9, dummy);
     }
 
     /**
