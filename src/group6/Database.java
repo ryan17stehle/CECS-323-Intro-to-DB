@@ -58,7 +58,6 @@ public class Database {
             //STEP 2: Register JDBC driver
             Class.forName(JDBC_DRIVER).newInstance();
             
-
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
             //conn = DriverManager.getConnection(DB_URL);
@@ -73,9 +72,11 @@ public class Database {
             }
             else if(choice == -1)
             {
+                //add customer
                 AddCust(conn, cust);
             }
             else
+                //do a select query
                 Query(conn, choice);
             
             return true;
@@ -513,9 +514,117 @@ public class Database {
     
     public static void DML(Connection conn) {
         try {
+            Statement insert = conn.createStatement();
+            // customers
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_1, \"John\", \"Wayne\", \"123 Bird Lane\"");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_2, \"Bruce\", \"Lee\", \"189 Santa Circle\"");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_3, \"Andy\", \"Dalton\", \"416 Chevy Hill\")");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_4, \"Rick\", \"James\", \"523 Blueberry Blvd\")");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_5, \"Bobby\", \"Brown\", \"888 Sunshine Lane\")");
+            
+            // phone numbers
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_1, \"Cell\", 714-624-3888\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_1, \"Home\", 714-624-9999\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_2, \"Cell\", 714-981-3726\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_2, \"Home\", 714-609-9124\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_3, \"Cell\", 714-123-4527\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_3, \"Home\", 714-624-0912\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_4, \"Cell\", 714-518-6227\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_4, \"Home\", 714-963-5422\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Cell\", 714-624-6437\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Home\", 714-961-5409\")");
+            
+            //inventory
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_1\", \"Ford\", \"Focus\", 2019, \"Electric\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_2\", \"Acura\", \"Integra\", 2019, \"Hybrid\", \"4 Door\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_3\", \"Toyota\", \"Highlander\", 2019, \"Gas\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_4\", \"BMW\", \"330i\", 2018, \"Gas\", \"Coupe\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_5\", \"Mercedes-Benz\", \"CLA\", 2018, \"Gas\", \"Convertible\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_6\", \"Mercedes-Benz\", \"GLA\", 2012, \"Gas\", \"Coupe\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_7\", \"Ford\", \"F-150\", 2012, \"Gas\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_8\", \"BMW\", \"M3\", 2011, \"Compressed Natural Gas\", \"Convertible\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_9\", \"Chevy\", \"Volt\", 2019, \"Hydrogen Fuel Cell\", \"Hatchback\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_10\", \"Toyota\", \"Tacoma\", 2013, \"Gas\", \"4 Door\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_11\", \"Hyundai\", \"Elantra\", 2017, \"Hybrid\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_12\", \"Nissan\", \"Sentra\", 2014, \"Solar\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_13\", \"Dodge\", \"Charger\", 2011, \"Gas\" \"Convertible\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_14\", \"Ford\", \"Fusion\", 2019, \"Hybrid\", \"4 Door\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_15\", \"Hyundai\", \"Elantra\", 2018, \"Hybrid\", \"Hatchback\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_16\", \"Ford\", \"Focus\", 2019, \"Electric\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_17\", \"Acura\", \"Integra\", 2019, \"Hybrid\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_18\", \"Toyota\", \"Highlander\", 2019, \"Gas\", \"4 Door\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_19\", \"BMW\", \"330i\", 2018, \"Gas\", \"Coupe\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_20\", \"Mercedes-Benz\", \"CLA\", 2018, \"Gas\", \"Convertible\", \"Blue\")");
+            
+            // salestranscation
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_1, emp_1, cust_1, trans_1, '2019-12-01', 24369.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_2, emp_2, cust_2, trans_2, '2019-11-03', 21569.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_3, emp_2, cust_3, trans_3, '2019-12-24', 23789.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_4, emp_3, cust_4, trans_4, '2018-10-22', 22812.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_5, emp_2, cust_5, trans_5, '2018-07-27', 19987.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_6, emp_1, cust_1, trans_6, '2012-01-18', 7512.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_7, emp_3, cust_2, trans_7, '2012-10-15', 12345.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_8, emp_3, cust_3, trans_8, '2011-03-13', 9985.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_9, emp_2, cust_4, trans_9, '2019-11-18', 25999.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_10, emp_1, cust_5, trans_10, '2013-10-18', 12785.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_11, emp_1, cust_1, trans_11, '2017-09-09', 20050.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_12, emp_3, cust_2, trans_12, '2014-02-01', 12850.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_13, emp_2, cust_3, trans_13, '2011-05-24', 11855.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_14, emp_2, cust_4, trans_14, '2019-11-22', 22699.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_15, emp_1, cust_5, trans_15, '2018-07-12', 27899.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_16, emp_1, cust_3, trans_16, '2019-12-01', 24399.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_17, emp_2, cust_4, trans_17, '2019-11-03', 21569.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_18, emp_2, cust_5, trans_18, '2019-12-24', 23789.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_19, emp_3, cust_1, trans_19, '2018-10-22', 22800.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_20, emp_2, cust_2, trans_20, '2018-07-27', 19999.00)");
+            
+            // employees
+            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_4, \"Stan\", \"Marsh\", 1, \"Customer Service\")");
+            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_5, \"Eric\", \"Cartman\", 4, \"Customer Service\")");
+            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_6, \"Kyle\", \"Broflovski\", 3, \"Customer Service\")");
+            
+            // technicians
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_7, \"Kyle\", \"Romanov\", 60000.00)");
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_8, \"Dan\", \"Brow\", 62500.00)");
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_9, \"Mitch\", \"Rapp\", 85000.00)");
+            
+            // certificates
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Oil Change Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Engine Repair Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Tire Rotation Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_8, \"Tire Rotation Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Tire Rotation Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Oil Change Certificate\")");
             
             
-            //String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            //salespersons
+            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_1, \"Thomas\", \"Stansfield\")");
+            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_2, \"Scott\", \"Coleman\")");
+            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_3, \"Mick\", \"Reavers\")");
+            
+            //colors
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Black\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Gray\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Red\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Blue\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"White\")");
+            
+            // fuel types
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Gas\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Electric\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Hybrid\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Compressed Natural Gas\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Hydrogen Fuel Cell\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Solar\")");
+            
+            //body styles
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"4 Door\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Coupe\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Station Wagon\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Convertible\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Hatchback\")");
+            
+            /*//String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             posted.setString(1, "1234567890");
             posted.setString(2, "Michael");
@@ -529,7 +638,7 @@ public class Database {
             final int seven = 12345;
             PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) " +
                     "VALUES ('"+one+"', '"+two+"', '"+three+"', '"+four+"', '"+five+"', '"+six+"', '"+seven+"', '"+eight+"')");*/
-            posted.executeUpdate();
+            //posted.executeUpdate();
             System.out.println("insert completed");
         } catch (Exception e) {
             System.out.println("error");
