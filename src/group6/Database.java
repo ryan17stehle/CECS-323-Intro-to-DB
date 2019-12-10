@@ -24,7 +24,8 @@ public class Database {
     static final String displayFormat="%-5s%-15s%-15s%-15s\n";
 // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static String DB_URL = "jdbc:mysql://cecs-db01.coe.csulb.edu:3306/cecs323sec5g6"; //?zeroDateTimeBehavior=convertToNull";
+    static String DB_URL = 
+            "jdbc:mysql://cecs-db01.coe.csulb.edu:3306/cecs323sec5g6"; //?zeroDateTimeBehavior=convertToNull";
 //            + "testdb;user=";s
 /**
  * Takes the input string and outputs "N/A" if the string is empty or null.
@@ -39,7 +40,8 @@ public class Database {
             return input;
     }
     
-    public static Boolean Database(String user, String pass, int choice, Customer cust){//String[] args) {
+    public static Boolean Database(String user, String pass, int choice, 
+            Customer cust){//String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to
         //remove that from the connection string.
@@ -217,7 +219,8 @@ public class Database {
                     "emer_cont_lname VARCHAR(20) NOT NULL, " +
                     "emer_cont_address VARCHAR(20), " +
                     "zip_code VARCHAR(5), " +
-                    "CONSTRAINT pk_EmergencyContacts PRIMARY KEY (employee_id))");
+                    "CONSTRAINT pk_EmergencyContacts PRIMARY KEY "
+                            + "(employee_id))");
             create.executeUpdate();
             System.out.println("create completed7");
             
@@ -253,7 +256,8 @@ public class Database {
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS LeatherInterior(" +
                     "leather_interior VARCHAR(10) NOT NULL, " +
-                    "CONSTRAINT pk_LeatherInterior PRIMARY KEY (leather_interior))");
+                    "CONSTRAINT pk_LeatherInterior PRIMARY KEY "
+                            + "(leather_interior))");
             create.executeUpdate();
             System.out.println("create completed11");
             
@@ -317,8 +321,10 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS SalariedEmployees(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "salary Float NOT NULL, " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
-                    "CONSTRAINT pk_SalariedEmployees PRIMARY KEY (employee_id))");
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
+                    "CONSTRAINT pk_SalariedEmployees PRIMARY KEY "
+                            + "(employee_id))");
             create.executeUpdate();
             System.out.println("create completed18");
             
@@ -328,8 +334,10 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS Managers(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "salary Float, " +
-                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees (salary), " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
+                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees "
+                            + "(salary), " +
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
                     "CONSTRAINT pk_Managers PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed19");
@@ -340,8 +348,10 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS Technicians(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "salary Float, " +
-                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees (salary), " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
+                    "FOREIGN KEY (salary) REFERENCES SalariedEmployees "
+                            + "(salary), " +
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
                     "CONSTRAINT pk_Technicians PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed20");
@@ -351,9 +361,11 @@ public class Database {
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Certificates(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
                     "certificate_name VARCHAR(30) NOT NULL, " +
-                    "CONSTRAINT pk_Certificates PRIMARY KEY (employee_id, certificate_name))");
+                    "CONSTRAINT pk_Certificates PRIMARY KEY "
+                            + "(employee_id, certificate_name))");
             create.executeUpdate();
             System.out.println("create completed21");
             
@@ -363,8 +375,10 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS CommissionRateEmployee(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "commission_rate FLOAT, " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
-                    "CONSTRAINT pk_CommissionRateEmployees PRIMARY KEY (employee_id))");
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
+                    "CONSTRAINT pk_CommissionRateEmployees PRIMARY KEY "
+                            + "(employee_id))");
             create.executeUpdate();
             System.out.println("create completed22");
             
@@ -374,8 +388,10 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS Salespersons(" +
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "commission_rate FLOAT, " +
-                    "FOREIGN KEY (commission_rate) REFERENCES CommissionRateEmployee (commission_rate), " +
-                    "FOREIGN KEY (employee_id) REFERENCES Employees (employee_id), " +
+                    "FOREIGN KEY (commission_rate) REFERENCES "
+                            + "CommissionRateEmployee (commission_rate), " +
+                    "FOREIGN KEY (employee_id) REFERENCES Employees "
+                            + "(employee_id), " +
                     "CONSTRAINT pk_Salespersons PRIMARY KEY (employee_id))");
             create.executeUpdate();
             System.out.println("create completed23");
@@ -388,12 +404,14 @@ public class Database {
                     "employee_id VARCHAR(10) NOT NULL, " +
                     "cust_id VARCHAR (10), " +
                     "FOREIGN KEY (VIN) REFERENCES Inventory (VIN), " +
-                    "FOREIGN KEY (employee_id) REFERENCES Salespersons (employee_id), " + 
+                    "FOREIGN KEY (employee_id) REFERENCES Salespersons ("
+                            + "employee_id), " + 
                     "FOREIGN KEY (cust_id) REFERENCES Customers (cust_id), " +
                     "transaction_id VARCHAR(20) NOT NULL, " + 
                     "purchase_date DATE NOT NULL, " +
                     "sale_amt Float NOT NULL, " +
-                    "CONSTRAINT pk_SalesTransactions PRIMARY KEY (transaction_id, purchase_date, sale_amt))");
+                    "CONSTRAINT pk_SalesTransactions PRIMARY KEY "
+                            + "(transaction_id, purchase_date, sale_amt))");
             create.executeUpdate();
             System.out.println("create completed24");
             
@@ -402,7 +420,8 @@ public class Database {
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Financing(" +
                     "transaction_id VARCHAR(20), " +
-                    "FOREIGN KEY (transaction_id) REFERENCES SalesTransactions (transaction_id), " +
+                    "FOREIGN KEY (transaction_id) REFERENCES SalesTransactions "
+                            + "(transaction_id), " +
                     "monthly_amt Float NOT NULL, " +
                     "date_of_last_payment DATE, " +
                     "CONSTRAINT pk_Financing PRIMARY KEY (transaction_id))");
@@ -492,30 +511,38 @@ public class Database {
             alter.execute(sql);
             System.out.println("alter completed10");
             
-            sql = "ALTER TABLE Dependents ADD CONSTRAINT Dependents_Employees_fk FOREIGN KEY (employee_id) REFERENCES Employees (employee_id)";
+            sql = "ALTER TABLE Dependents ADD CONSTRAINT "
+                    + "Dependents_Employees_fk FOREIGN KEY (employee_id) "
+                    + "REFERENCES Employees (employee_id)";
             alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed11");
             
-            sql = "ALTER TABLE CUSTOMERS ADD CONSTRAINT Customers_ZipLocations_fk FOREIGN KEY (zip_code) " +
+            sql = "ALTER TABLE CUSTOMERS ADD CONSTRAINT "
+                    + "Customers_ZipLocations_fk FOREIGN KEY (zip_code) " +
                     "REFERENCES ZipLocations (zip_code)";
             alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed12");
             
-            sql = "ALTER TABLE Employees ADD CONSTRAINT Employees_ZipLocations_fk FOREIGN KEY (zip_code) " + 
+            sql = "ALTER TABLE Employees ADD CONSTRAINT "
+                    + "Employees_ZipLocations_fk FOREIGN KEY (zip_code) " + 
                     "REFERENCES ZipLocations (zip_code)";
             alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed13");
             
-            sql = "ALTER TABLE EmergencyContacts ADD CONSTRAINT EmergencyContacts_ZipLocations_fk FOREIGN KEY (zip_code) " +
+            sql = "ALTER TABLE EmergencyContacts ADD CONSTRAINT "
+                    + "EmergencyContacts_ZipLocations_fk FOREIGN KEY "
+                    + "(zip_code) " +
                     "REFERENCES ZipLocations (zip_code)";
             alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed14");
             
-            sql = "ALTER TABLE EmergencyContacts CONSTRAINT EmergencyContacts_Employees_fkn FOREIGN KEY (employee_id) " +
+            sql = "ALTER TABLE EmergencyContacts CONSTRAINT "
+                    + "EmergencyContacts_Employees_fkn FOREIGN KEY "
+                    + "(employee_id) " +
                     "REFERENCES Employees (employee_id)";
             alter = conn.createStatement();
             alter.execute(sql);
@@ -555,139 +582,323 @@ public class Database {
         try {
             Statement insert = conn.createStatement();
             // customers
-            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_1, \"John\", \"Wayne\", \"123 Bird Lane\"");
-            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_2, \"Bruce\", \"Lee\", \"189 Santa Circle\"");
-            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_3, \"Andy\", \"Dalton\", \"416 Chevy Hill\")");
-            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_4, \"Rick\", \"James\", \"523 Blueberry Blvd\")");
-            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_address) VALUES (cust_5, \"Bobby\", \"Brown\", \"888 Sunshine Lane\")");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, "
+                    + "cust_lname, cust_address) VALUES (cust_1, \"John\", "
+                    + "\"Wayne\", \"123 Bird Lane\"");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, "
+                    + "cust_lname, cust_address) VALUES (cust_2, \"Bruce\", "
+                    + "\"Lee\", \"189 Santa Circle\"");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, "
+                    + "cust_lname, cust_address) VALUES (cust_3, \"Andy\", "
+                    + "\"Dalton\", \"416 Chevy Hill\")");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, "
+                    + "cust_lname, cust_address) VALUES (cust_4, \"Rick\", "
+                    + "\"James\", \"523 Blueberry Blvd\")");
+            insert.executeUpdate("INSERT INTO Customers (cust_id, cust_fname, "
+                    + "cust_lname, cust_address) VALUES (cust_5, \"Bobby\", "
+                    + "\"Brown\", \"888 Sunshine Lane\")");
             System.out.println("customer inserted");
             
             // phone numbers
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_1, \"Cell\", 714-624-3888\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_1, \"Home\", 714-624-9999\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_2, \"Cell\", 714-981-3726\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_2, \"Home\", 714-609-9124\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_3, \"Cell\", 714-123-4527\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_3, \"Home\", 714-624-0912\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_4, \"Cell\", 714-518-6227\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_4, \"Home\", 714-963-5422\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Cell\", 714-624-6437\")");
-            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, phone_type, phone_number) VALUES (cust_5, \"Home\", 714-961-5409\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_1, \"Cell\", "
+                    + "714-624-3888\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_1, \"Home\", "
+                    + "714-624-9999\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_2, \"Cell\", "
+                    + "714-981-3726\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_2, \"Home\", "
+                    + "714-609-9124\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_3, \"Cell\", "
+                    + "714-123-4527\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_3, \"Home\", "
+                    + "714-624-0912\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_4, \"Cell\", "
+                    + "714-518-6227\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_4, \"Home\", "
+                    + "714-963-5422\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_5, \"Cell\", "
+                    + "714-624-6437\")");
+            insert.executeUpdate("INSERT INTO PhoneNumbers (cust_id, "
+                    + "phone_type, phone_number) VALUES (cust_5, \"Home\", "
+                    + "714-961-5409\")");
             System.out.println("phone inserted");
             
             //inventory
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_1\", \"Ford\", \"Focus\", 2019, \"Electric\", \"Hatchback\", \"Black\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_2\", \"Acura\", \"Integra\", 2019, \"Hybrid\", \"4 Door\", \"White\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_3\", \"Toyota\", \"Highlander\", 2019, \"Gas\", \"4 Door\", \"Gray\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_4\", \"BMW\", \"330i\", 2018, \"Gas\", \"Coupe\", \"Red\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_5\", \"Mercedes-Benz\", \"CLA\", 2018, \"Gas\", \"Convertible\", \"Blue\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_6\", \"Mercedes-Benz\", \"GLA\", 2012, \"Gas\", \"Coupe\", \"Black\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_7\", \"Ford\", \"F-150\", 2012, \"Gas\", \"4 Door\", \"Gray\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_8\", \"BMW\", \"M3\", 2011, \"Compressed Natural Gas\", \"Convertible\", \"Red\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_9\", \"Chevy\", \"Volt\", 2019, \"Hydrogen Fuel Cell\", \"Hatchback\", \"White\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_10\", \"Toyota\", \"Tacoma\", 2013, \"Gas\", \"4 Door\", \"Blue\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_11\", \"Hyundai\", \"Elantra\", 2017, \"Hybrid\", \"Hatchback\", \"Black\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_12\", \"Nissan\", \"Sentra\", 2014, \"Solar\", \"4 Door\", \"Gray\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_13\", \"Dodge\", \"Charger\", 2011, \"Gas\" \"Convertible\", \"Red\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_14\", \"Ford\", \"Fusion\", 2019, \"Hybrid\", \"4 Door\", \"White\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_15\", \"Hyundai\", \"Elantra\", 2018, \"Hybrid\", \"Hatchback\", \"Blue\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_16\", \"Ford\", \"Focus\", 2019, \"Electric\", \"Hatchback\", \"Black\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_17\", \"Acura\", \"Integra\", 2019, \"Hybrid\", \"4 Door\", \"Gray\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_18\", \"Toyota\", \"Highlander\", 2019, \"Gas\", \"4 Door\", \"Red\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_19\", \"BMW\", \"330i\", 2018, \"Gas\", \"Coupe\", \"White\")");
-            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, car_model, car_year, fuel_type, body_style, car_color) VALUES (\"VIN_20\", \"Mercedes-Benz\", \"CLA\", 2018, \"Gas\", \"Convertible\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_1\", \"Ford\", \"Focus\", 2019, "
+                    + "\"Electric\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_2\", \"Acura\", \"Integra\", 2019, "
+                    + "\"Hybrid\", \"4 Door\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_3\", \"Toyota\", \"Highlander\", 2019, "
+                    + "\"Gas\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_4\", \"BMW\", \"330i\", 2018, \"Gas\", "
+                    + "\"Coupe\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_5\", \"Mercedes-Benz\", \"CLA\", 2018, "
+                    + "\"Gas\", \"Convertible\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_6\", \"Mercedes-Benz\", \"GLA\", 2012, "
+                    + "\"Gas\", \"Coupe\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_7\", \"Ford\", \"F-150\", 2012, \"Gas\", "
+                    + "\"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_8\", \"BMW\", \"M3\", 2011, "
+                    + "\"Compressed Natural Gas\", \"Convertible\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_9\", \"Chevy\", \"Volt\", 2019, "
+                    + "\"Hydrogen Fuel Cell\", \"Hatchback\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_10\", \"Toyota\", \"Tacoma\", 2013, "
+                    + "\"Gas\", \"4 Door\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_11\", \"Hyundai\", \"Elantra\", 2017, "
+                    + "\"Hybrid\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_12\", \"Nissan\", \"Sentra\", 2014, "
+                    + "\"Solar\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_13\", \"Dodge\", \"Charger\", 2011, "
+                    + "\"Gas\" \"Convertible\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_14\", \"Ford\", \"Fusion\", 2019, "
+                    + "\"Hybrid\", \"4 Door\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_15\", \"Hyundai\", \"Elantra\", 2018, "
+                    + "\"Hybrid\", \"Hatchback\", \"Blue\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_16\", \"Ford\", \"Focus\", 2019, "
+                    + "\"Electric\", \"Hatchback\", \"Black\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_17\", \"Acura\", \"Integra\", 2019, "
+                    + "\"Hybrid\", \"4 Door\", \"Gray\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_18\", \"Toyota\", \"Highlander\", 2019, "
+                    + "\"Gas\", \"4 Door\", \"Red\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) "
+                    + "VALUES (\"VIN_19\", \"BMW\", \"330i\", 2018, \"Gas\", "
+                    + "\"Coupe\", \"White\")");
+            insert.executeUpdate("INSERT INTO Inventory (VIN, car_make, "
+                    + "car_model, car_year, fuel_type, body_style, car_color) V"
+                    + "ALUES (\"VIN_20\", \"Mercedes-Benz\", \"CLA\", 2018, "
+                    + "\"Gas\", \"Convertible\", \"Blue\")");
             System.out.println("inventory inserted");
             
             // salestranscation
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_1, emp_1, cust_1, trans_1, '2019-12-01', 24369.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_2, emp_2, cust_2, trans_2, '2019-11-03', 21569.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_3, emp_2, cust_3, trans_3, '2019-12-24', 23789.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_4, emp_3, cust_4, trans_4, '2018-10-22', 22812.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_5, emp_2, cust_5, trans_5, '2018-07-27', 19987.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_6, emp_1, cust_1, trans_6, '2012-01-18', 7512.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_7, emp_3, cust_2, trans_7, '2012-10-15', 12345.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_8, emp_3, cust_3, trans_8, '2011-03-13', 9985.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_9, emp_2, cust_4, trans_9, '2019-11-18', 25999.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_10, emp_1, cust_5, trans_10, '2013-10-18', 12785.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_11, emp_1, cust_1, trans_11, '2017-09-09', 20050.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_12, emp_3, cust_2, trans_12, '2014-02-01', 12850.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_13, emp_2, cust_3, trans_13, '2011-05-24', 11855.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_14, emp_2, cust_4, trans_14, '2019-11-22', 22699.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_15, emp_1, cust_5, trans_15, '2018-07-12', 27899.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_16, emp_1, cust_3, trans_16, '2019-12-01', 24399.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_17, emp_2, cust_4, trans_17, '2019-11-03', 21569.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_18, emp_2, cust_5, trans_18, '2019-12-24', 23789.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_19, emp_3, cust_1, trans_19, '2018-10-22', 22800.00)");
-            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, employee_id, cust_id, transaction_id, purchase_date, sale_amt) VALUES (VIN_20, emp_2, cust_2, trans_20, '2018-07-27', 19999.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_1, emp_1, cust_1, trans_1, "
+                    + "'2019-12-01', 24369.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_2, emp_2, cust_2, trans_2, "
+                    + "'2019-11-03', 21569.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_3, emp_2, cust_3, trans_3, "
+                    + "'2019-12-24', 23789.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_4, emp_3, cust_4, trans_4, "
+                    + "'2018-10-22', 22812.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_5, emp_2, cust_5, trans_5, "
+                    + "'2018-07-27', 19987.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_6, emp_1, cust_1, trans_6, "
+                    + "'2012-01-18', 7512.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_7, emp_3, cust_2, trans_7, "
+                    + "'2012-10-15', 12345.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_8, emp_3, cust_3, trans_8, "
+                    + "'2011-03-13', 9985.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_9, emp_2, cust_4, trans_9, "
+                    + "'2019-11-18', 25999.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_10, emp_1, cust_5, trans_10, "
+                    + "'2013-10-18', 12785.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_11, emp_1, cust_1, trans_11, "
+                    + "'2017-09-09', 20050.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_12, emp_3, cust_2, trans_12, "
+                    + "'2014-02-01', 12850.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_13, emp_2, cust_3, trans_13, "
+                    + "'2011-05-24', 11855.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_14, emp_2, cust_4, trans_14, "
+                    + "'2019-11-22', 22699.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_15, emp_1, cust_5, trans_15, "
+                    + "'2018-07-12', 27899.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_16, emp_1, cust_3, trans_16, "
+                    + "'2019-12-01', 24399.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_17, emp_2, cust_4, trans_17, "
+                    + "'2019-11-03', 21569.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_18, emp_2, cust_5, trans_18, "
+                    + "'2019-12-24', 23789.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_19, emp_3, cust_1, trans_19, "
+                    + "'2018-10-22', 22800.00)");
+            insert.executeUpdate("INSERT INTO SalesTransactions (VIN, "
+                    + "employee_id, cust_id, transaction_id, purchase_date, "
+                    + "sale_amt) VALUES (VIN_20, emp_2, cust_2, trans_20, "
+                    + "'2018-07-27', 19999.00)");
             System.out.println("salesTrans inserted");
             
             // employees
-            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_4, \"Stan\", \"Marsh\", 1, \"Customer Service\")");
-            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_5, \"Eric\", \"Cartman\", 4, \"Customer Service\")");
-            insert.executeUpdate("INSERT INTO Employees (employee_id, employee_fname, employee_lname, unused_vacation_days, department) VALUES (emp_6, \"Kyle\", \"Broflovski\", 3, \"Customer Service\")");
+            insert.executeUpdate("INSERT INTO Employees (employee_id, "
+                    + "employee_fname, employee_lname, unused_vacation_days, "
+                    + "department) VALUES (emp_4, \"Stan\", \"Marsh\", 1, "
+                    + "\"Customer Service\")");
+            insert.executeUpdate("INSERT INTO Employees (employee_id, "
+                    + "employee_fname, employee_lname, unused_vacation_days, "
+                    + "department) VALUES (emp_5, \"Eric\", \"Cartman\", 4, "
+                    + "\"Customer Service\")");
+            insert.executeUpdate("INSERT INTO Employees (employee_id, "
+                    + "employee_fname, employee_lname, unused_vacation_days, "
+                    + "department) VALUES (emp_6, \"Kyle\", \"Broflovski\", 3, "
+                    + "\"Customer Service\")");
             System.out.println("employees inserted");
             
             // technicians
-            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_7, \"Kyle\", \"Romanov\", 60000.00)");
-            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_8, \"Dan\", \"Brow\", 62500.00)");
-            insert.executeUpdate("INSERT INTO Technicians (employee_id, employee_fname, employee_lname, salary) VALUES (emp_9, \"Mitch\", \"Rapp\", 85000.00)");
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, "
+                    + "employee_fname, employee_lname, salary) VALUES (emp_7, "
+                    + "\"Kyle\", \"Romanov\", 60000.00)");
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, "
+                    + "employee_fname, employee_lname, salary) VALUES (emp_8, "
+                    + "\"Dan\", \"Brow\", 62500.00)");
+            insert.executeUpdate("INSERT INTO Technicians (employee_id, "
+                    + "employee_fname, employee_lname, salary) VALUES (emp_9, "
+                    + "\"Mitch\", \"Rapp\", 85000.00)");
             System.out.println("technicians inserted");
             
             // certificates
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Oil Change Certificate\")");
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Engine Repair Certificate\")");
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_7, \"Tire Rotation Certificate\")");
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_8, \"Tire Rotation Certificate\")");
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Tire Rotation Certificate\")");
-            insert.executeUpdate("INSERT INTO Certificates (employee_id, certificate_name) VALUES (emp_9, \"Oil Change Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_7, \"Oil Change "
+                    + "Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_7, \"Engine Repair "
+                    + "Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_7, \"Tire Rotation "
+                    + "Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_8, \"Tire Rotation "
+                    + "Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_9, \"Tire Rotation "
+                    + "Certificate\")");
+            insert.executeUpdate("INSERT INTO Certificates (employee_id, "
+                    + "certificate_name) VALUES (emp_9, \"Oil Change "
+                    + "Certificate\")");
             System.out.println("certificates inserted");
             
             //salespersons
-            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_1, \"Thomas\", \"Stansfield\")");
-            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_2, \"Scott\", \"Coleman\")");
-            insert.executeUpdate ("INSERT INTO Salespersons (employee_id, employee_fname, employee_lname) VALUES (emp_3, \"Mick\", \"Reavers\")");
+            insert.executeUpdate ("INSERT INTO Salespersons "
+                    + "(employee_id, employee_fname, employee_lname) VALUES "
+                    + "(emp_1, \"Thomas\", \"Stansfield\")");
+            insert.executeUpdate ("INSERT INTO Salespersons "
+                    + "(employee_id, employee_fname, employee_lname) VALUES "
+                    + "(emp_2, \"Scott\", \"Coleman\")");
+            insert.executeUpdate ("INSERT INTO Salespersons "
+                    + "(employee_id, employee_fname, employee_lname) VALUES "
+                    + "(emp_3, \"Mick\", \"Reavers\")");
             System.out.println("salespersons inserted");
             
             //colors
-            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Black\")");
-            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Gray\")");
-            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Red\")");
-            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"Blue\")");
-            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES (\"White\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES "
+                    + "(\"Black\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES "
+                    + "(\"Gray\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES "
+                    + "(\"Red\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES "
+                    + "(\"Blue\")");
+            insert.executeUpdate ("INSERT INTO Colors (car_color) VALUES "
+                    + "(\"White\")");
             System.out.println("colors inserted");
             
             // fuel types
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Gas\")");
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Electric\")");
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Hybrid\")");
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Compressed Natural Gas\")");
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Hydrogen Fuel Cell\")");
-            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES (\"Solar\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Gas\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Electric\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Hybrid\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Compressed Natural Gas\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Hydrogen Fuel Cell\")");
+            insert.executeUpdate("INSERT INTO FuelTypes (fuel_type) VALUES "
+                    + "(\"Solar\")");
             System.out.println("fuelTypes inserted");
             
             //body styles
-            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"4 Door\")");
-            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Coupe\")");
-            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Station Wagon\")");
-            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Convertible\")");
-            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES (\"Hatchback\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES "
+                    + "(\"4 Door\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES "
+                    + "(\"Coupe\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES "
+                    + "(\"Station Wagon\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES "
+                    + "(\"Convertible\")");
+            insert.executeUpdate ("INSERT INTO BodyStyles (body_style) VALUES "
+                    + "(\"Hatchback\")");
             System.out.println("bodyStyles inserted");
             
-            /*//String insert = "INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            posted.setString(1, "1234567890");
-            posted.setString(2, "Michael");
-            posted.setString(3, "Jee");
-            posted.setString(4, "D");
-            posted.setString(5, "123456789012");
-            posted.setString(6, "123 lolipop rd");
-            posted.setString(7, "12345");
-            posted.setString(8, "mdj@gmail.com");
-            /*final String one = "1234567890", two = "Michael", three = "Jee", four = "D", five = "123456789012", six = "123 lolipop rd", eight = "mdj@gmail.com";
-            final int seven = 12345;
-            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) " +
-                    "VALUES ('"+one+"', '"+two+"', '"+three+"', '"+four+"', '"+five+"', '"+six+"', '"+seven+"', '"+eight+"')");*/
-            //posted.executeUpdate();
             System.out.println("insert completed");
         } catch (Exception e) {
             System.out.println("error");
@@ -820,7 +1031,8 @@ public class Database {
 
                         // print the results
                         System.out.format("%s\n", cust_id);
-                        //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
+                        //System.out.format("%s, %s, %s, %s, %s, %s\n", id, 
+                        //firstName, lastName, dateCreated, isAdmin, numPoints);
                     }
                 }
             }
@@ -831,15 +1043,17 @@ public class Database {
             e.printStackTrace();
         }
     }
-    
-    public static void View(Connection conn, int choice)
-    {
+
+    public static void View(Connection conn, int choice) {
         String sql;
-        Statement view; 
+        Statement view;
         try {
             if (choice == 1) {
                 sql = "CREATE VIEW customers_view AS "
-                        + "SELECT c.first_name, c.last_name, p.number as “home phone”, p.number as “cell phone”, i.make, i.model, i.year, s.date, e.first_name, e.middle_name, e.last_name, s.price "
+                        + "SELECT c.first_name, c.last_name, p.number as "
+                        + "“home phone”, p.number as “cell phone”, i.make, "
+                        + "i.model, i.year, s.date, e.first_name, "
+                        + "e.middle_name, e.last_name, s.price "
                         + "FROM customer c inner join "
                         + "FROM "
                         + "SELECT p1.custID, p1.phoneNumbers as “home phone” "
@@ -855,11 +1069,10 @@ public class Database {
                 view = conn.createStatement();
                 view.execute(sql);
                 System.out.println("view completed1");
-            }
-            else if(choice == 2)
-            {
+            } else if (choice == 2) {
                 sql = "CREATE VIEW salespersons_view AS "
-                        + "SELECT e.first_name, e.middle_name, e.last_name, count(s.date), sum(s.price) "
+                        + "SELECT e.first_name, e.middle_name, e.last_name, "
+                        + "count(s.date), sum(s.price) "
                         + "FROM employee e inner join salesTransction s "
                         + "WHERE <current_date> - s.date <= 00010000";
                 view = conn.createStatement();
@@ -874,7 +1087,10 @@ public class Database {
     
     public static void AddCust(Connection conn, Customer cust) {
         try {
-            PreparedStatement posted = conn.prepareStatement("INSERT INTO Customers (cust_id, cust_fname, cust_lname, cust_mid_ini, cust_ssn, cust_address, zip_code, cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement posted = conn.prepareStatement("INSERT INTO "
+                    + "Customers (cust_id, cust_fname, cust_lname, "
+                    + "cust_mid_ini, cust_ssn, cust_address, zip_code, "
+                    + "cust_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             posted.setString(1, cust.getId()); //generated custid);
             posted.setString(2, cust.getFirst());
             posted.setString(3, cust.getLast());
