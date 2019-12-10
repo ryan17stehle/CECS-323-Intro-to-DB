@@ -8,13 +8,15 @@ public class Menu extends javax.swing.JFrame {
 
     static String user;
     static String pass;
+    static Database db;
     /**
      * Creates new form Menu
      */
-    public Menu(String u, String p) {
+    public Menu(String u, String p, Database data) {
         initComponents();
         user = u;
         pass = p;
+        db = data;
     }
 
     /**
@@ -85,13 +87,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        NewCustomer NC = new NewCustomer(user, pass);
+        NewCustomer NC = new NewCustomer(user, pass, db);
         NC.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Queries query = new Queries(user, pass);
+        Queries query = new Queries(user, pass, db);
         query.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -131,7 +133,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu(user, pass).setVisible(true);
+                new Menu(user, pass, db).setVisible(true);
             }
         });
     }

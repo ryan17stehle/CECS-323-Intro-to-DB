@@ -13,13 +13,16 @@ public class NewCustomer extends javax.swing.JFrame {
 
     static String user;
     static String pass;
+    static Database db;
     /**
      * Creates new form NewCustomer
      */
-    public NewCustomer(String u, String p) {
+    public NewCustomer(String u, String p, Database data) {
         initComponents();
         user = u;
         pass = p;
+        db = data;
+        
     }
 
     /**
@@ -278,7 +281,6 @@ public class NewCustomer extends javax.swing.JFrame {
         primary.setDate(transaction_date.getText());
         primary.setIncome(income.getText());
         
-        Database db = new Database();
         db.Database(user, pass, -1, primary);
         
         setVisible(false);
@@ -408,7 +410,7 @@ public class NewCustomer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewCustomer(user, pass).setVisible(true);
+                new NewCustomer(user, pass, db).setVisible(true);
             }
         });
     }

@@ -8,13 +8,15 @@ public class Queries extends javax.swing.JFrame {
 
     static String user;
     static String pass;
+    static Database db;
     /**
      * Creates new form Queries
      */
-    public Queries(String u, String p) {
+    public Queries(String u, String p, Database data) {
         initComponents();
         user = u;
         pass = p;
+        db = data;
     }
 
     /**
@@ -332,103 +334,103 @@ public class Queries extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Query1 Q1 = new Query1(user, pass);
+        Query1 Q1 = new Query1(user, pass, db);
         Q1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Query2 Q2 = new Query2(user, pass);
+        Query2 Q2 = new Query2(user, pass, db);
         Q2.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Query3 Q3 = new Query3(user, pass);
+        Query3 Q3 = new Query3(user, pass, db);
         Q3.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Query4 Q4 = new Query4(user, pass);
+        Query4 Q4 = new Query4(user, pass, db);
         Q4.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Query7 Q7 = new Query7(user, pass);
+        Query7 Q7 = new Query7(user, pass, db);
         Q7.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        Query9 Q9 = new Query9(user, pass);
+        Query9 Q9 = new Query9(user, pass, db);
         Q9.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        Query15 Q15 = new Query15(user, pass);
+        Query15 Q15 = new Query15(user, pass, db);
         Q15.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Query5 Q5 = new Query5(user, pass);
+        Query5 Q5 = new Query5(user, pass, db);
         Q5.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Query6 Q6 = new Query6(user, pass);
+        Query6 Q6 = new Query6(user, pass, db);
         Q6.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        Query8 Q8 = new Query8(user, pass);
+        Query8 Q8 = new Query8(user, pass, db);
         Q8.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        Query10 Q10 = new Query10(user, pass);
+        Query10 Q10 = new Query10(user, pass, db);
         Q10.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        Query12 Q12 = new Query12(user, pass);
+        Query12 Q12 = new Query12(user, pass, db);
         Q12.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        Query13 Q13 = new Query13(user, pass);
+        Query13 Q13 = new Query13(user, pass, db);
         Q13.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        Query14 Q14 = new Query14(user, pass);
+        Query14 Q14 = new Query14(user, pass, db);
         Q14.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        Query16 Q16 = new Query16(user, pass);
+        Query16 Q16 = new Query16(user, pass, db);
         Q16.setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        Query17 Q17 = new Query17(user, pass);
+        Query17 Q17 = new Query17(user, pass, db);
         Q17.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        Query11 Q11 = new Query11(user, pass);
+        Query11 Q11 = new Query11(user, pass, db);
         Q11.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -472,7 +474,7 @@ public class Queries extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Queries(user, pass).setVisible(true);
+                new Queries(user, pass, db).setVisible(true);
             }
         });
     }

@@ -64,6 +64,7 @@ public class Database {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             //conn.setAutoCommit(true);
             
+            System.out.println(choice);
             if(choice == 0)
             {
                 //initialize/execute DDL&DML
@@ -174,7 +175,7 @@ public class Database {
             System.out.println("create completed4");
             
             //fix date format syntax, move foreign key adding to alter statements?
-            /*drop = conn.prepareStatement("DROP TABLE IF EXISTS Employees");
+            drop = conn.prepareStatement("DROP TABLE IF EXISTS Employees");
             drop.executeUpdate();
             create = conn.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Employees(" +
@@ -193,7 +194,7 @@ public class Database {
                     "benefits_premium VARCHAR(10), " +
                     "CONSTRAINT pl_Employees PRIMARY KEY (employee_id))");
             create.executeUpdate();
-            System.out.println("create completed5");*/
+            System.out.println("create completed5");
             
             drop = conn.prepareStatement("DROP TABLE IF EXISTS Dependents");
             drop.executeUpdate();
@@ -654,86 +655,103 @@ public class Database {
                 {
                     //query1
                     System.out.println("query1");
+                    break;
                 }
                 case 2:
                 {
                     //query2
                     System.out.println("query2");
+                    break;
                 }
                 case 3:
                 {
                     //query3
                     System.out.println("query3");
+                    break;
                 }
                 case 4:
                 {
                     //query4
                     System.out.println("query4");
+                    break;
                 }
                 case 5:
                 {
                     //query5
                     System.out.println("query5");
+                    break;
                 }
                 case 6:
                 {
                     //query6
                     System.out.println("query6");
+                    break;
                 }
                 case 7: 
                 {
                     //query7
                     System.out.println("query7");
+                    break;
                 }
                 case 8:
                 {
                     //query8
                     System.out.println("query8");
+                    break;
                 }
                 case 9:
                 {
                     //query9
                     System.out.println("query9");
+                    break;
                 }
                 case 10:
                 {
                     //query10
                     System.out.println("query10");
+                    break;
                 }
                 case 11:
                 {
                     //query11
                     System.out.println("query11");
+                    break;
                 }
                 case 12:
                 {
                     //query12
                     System.out.println("query12");
+                    break;
                 }
                 case 13:
                 {
                     //query13
                     System.out.println("query13");
+                    break;
                 }
                 case 14:
                 {
                     //query14
                     System.out.println("query14");
+                    break;
                 }
                 case 15:
                 {
                     //query15
                     System.out.println("query15");
+                    break;
                 }
                 case 16:
                 {
                     //query16
                     System.out.println("query16");
+                    break;
                 }
                 case 17:
                 {
                     //query17
                     System.out.println("query17");
+                    break;
                 }
                 default:
                 {

@@ -104,7 +104,7 @@ public class MainFrame extends javax.swing.JFrame {
         if(db.Database(user, pass, 0, dummy))
         {
             setVisible(false);
-            Menu menu = new Menu(user, pass);
+            Menu menu = new Menu(user, pass, db);
             menu.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

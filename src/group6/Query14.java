@@ -13,14 +13,15 @@ public class Query14 extends javax.swing.JFrame {
 
     static String user;
     static String pass;
+    static Database db;
     /**
      * Creates new form Query14
      */
-    public Query14(String u, String p) {
+    public Query14(String u, String p, Database data) {
         initComponents();
         user = u;
         pass = p;
-        Database db = new Database();
+        db = data;
         Customer dummy = new Customer();
         db.Database(user, pass, 14, dummy);
     }
@@ -122,7 +123,7 @@ public class Query14 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Query14(user, pass).setVisible(true);
+                new Query14(user, pass, db).setVisible(true);
             }
         });
     }
