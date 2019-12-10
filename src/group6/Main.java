@@ -18,10 +18,10 @@ public class Main {
      */
     //push test 2
     public static void main(String[] args) {
-        MainFrame mf = new MainFrame();
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        mf.setVisible(true);
+        //MainFrame mf = new MainFrame();
+        //Menu menu = new Menu();
+        //menu.setVisible(true);
+        //mf.setVisible(true);
         
         //Database db = new Database();
         //db.main();

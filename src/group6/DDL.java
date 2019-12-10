@@ -11,11 +11,11 @@ import java.sql.PreparedStatement;
  *
  * @author Michael
  */
-public class DDL {
+/*public class DDL {
     
     String createCustomers()
     {
         PreparedStatement create = 
     }
     
-}
+}*/

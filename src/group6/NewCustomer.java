@@ -254,7 +254,7 @@ public class NewCustomer extends javax.swing.JFrame {
     private void save_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_recordActionPerformed
         // TODO add your handling code here:
         Customer primary = new Customer(); //create objects for the applicant
-        boolean invalid = false; //if boolean invalid is true, application status marked as invalid and calculations suspended
+        //boolean invalid = false; //if boolean invalid is true, application status marked as invalid and calculations suspended
         
         primary.setFirst(first_name.getText());
         primary.setLast(last_name.getText());
@@ -273,7 +273,6 @@ public class NewCustomer extends javax.swing.JFrame {
             primary.setOS(Customer.ownStatus.purchased);
         primary.setDate(transaction_date.getText());
         primary.setIncome(income.getText());
-        
         
         setVisible(false);
         

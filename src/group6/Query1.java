@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group6;
 
 import java.sql.*;
@@ -22,63 +17,6 @@ public class Query1 extends javax.swing.JFrame {
      */
     public Query1() {
         initComponents();
-        Connection conn = db.conn;
-                    PreparedStatement create = conn.prepareStatement("CREATE TABLE IF NOT EXISTS Customers(cust_id VARCHAR(10) NOT NULL, " +
-                        "cust_fname VARCHAR(15) NOT NULL, " +
-                        "cust_lname VARCHAR(15) NOT NULL, " +
-                        "cust_mid_ini VARCHAR(1), " +
-                        "cust_ssn VARCHAR(12), " +
-                        "cust_address VARCHAR(30) NOT NULL, " +
-                        "zip_code INTEGER(5), " +
-                        "cust_email VARCHAR(30), " +
-                        "CONSTRAINT pk_customers PRIMARY KEY (cust_id))");
-            create.executeUpdate();
-            
-            /*try
-            {
-                PreparedStatement create = conn.prepareStatement("CREATE TABLE IF NOT EXISTS Customers(cust_id VARCHAR(10) NOT NULL, " +
-                        "cust_fname VARCHAR(15) NOT NULL, " +
-                        "cust_lname VARCHAR(15) NOT NULL, " +
-                        "cust_mid_ini VARCHAR(1), " +
-                        "cust_ssn VARCHAR(12), " +
-                        "cust_address VARCHAR(30) NOT NULL, " +
-                        "zip_code INTEGER(5), " +
-                        "cust_email VARCHAR(30), " +
-                        "CONSTRAINT pk_customers PRIMARY KEY (cust_id))");
-                create.executeUpdate();
-                System.out.println("successful");
-            }
-            catch(Exception e)
-            {
-                System.out.println("error");
-            }
-            finally
-            {
-                System.out.println("completed");
-            }*/
-            
-      String query = "SELECT * FROM Customers";
-
-      // create the java statement
-      Statement st = conn.createStatement();
-      
-      // execute the query, and get a java resultset
-      ResultSet rs = st.executeQuery(query);
-      
-      // iterate through the java resultset
-      while (rs.next())
-      {
-        String cust_id = rs.getString("cust_id");
-        //String firstName = rs.getString("first_name");
-        //String lastName = rs.getString("last_name");
-        //Date dateCreated = rs.getDate("date_created");
-        //boolean isAdmin = rs.getBoolean("is_admin");
-        //int numPoints = rs.getInt("num_points");
-        
-        // print the results
-        System.out.format("%i\n", cust_id);
-        //System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
-      }
     }
 
     /**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group6;
 
 /**
@@ -66,7 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(jTextField2)))
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -104,9 +99,12 @@ public class MainFrame extends javax.swing.JFrame {
         user = jTextField1.getText();
         pass = jTextField2.getText();
         Database db = new Database();
-        db.main(user, pass);
-        
-        setVisible(false);
+        if(db.login(user, pass))
+        {
+            setVisible(false);
+            Menu menu = new Menu();
+            menu.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
