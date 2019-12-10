@@ -385,3 +385,13 @@ INSERT INTO BodyStyles (body_style) VALUES ("Coupe");
 INSERT INTO BodyStyles (body_style) VALUES ("Station Wagon");
 INSERT INTO BodyStyles (body_style) VALUES ("Convertible");
 INSERT INTO BodyStyles (body_style) VALUES ("Hatchback");
+
+INSERT INTO Years (car_year) VALUES (2011);
+INSERT INTO Years (car_year) VALUES (2012);
+INSERT INTO Years (car_year) VALUES (2013);
+INSERT INTO Years (car_year) VALUES (2014);
+INSERT INTO Years (car_year) VALUES (2015);
+INSERT INTO Years (car_year) VALUES (2016);
+INSERT INTO Years (car_year) VALUES (2017);
+INSERT INTO Years (car_year) VALUES (2018);
+INSERT INTO Years (car_year) VALUES (2019);
