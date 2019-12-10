@@ -1,0 +1,32 @@
+public static void main(String args[]) 
+    { 
+		float loan_amt = 0.0;
+		String transaction_id = "";
+		System.out.print("Enter the loan amount: ");
+        loan_amt = in.nextLine();
+		System.out.print("Enter the transaction ID: ");
+		transaction_id = in.nextLine();
+        try
+        { 
+            Class.forName(JDBC_DRIVER); 
+            Connection con = DriverManager.getConnection(DB_URL, USER, PASS); 
+            Statement stmt = con.createStatement(); 
+          
+            // Updating database 
+            String q1 = "UPDATE Financing set loan_amt = '" + loan_amt +  
+                    "' WHERE transaction_id = '" + trans_id; 
+            int x = stmt.executeUpdate(q1); 
+              
+            if (x > 0)             
+                System.out.println("Password Successfully Updated");             
+            else            
+                System.out.println("ERROR OCCURED :("); 
+              
+            con.close(); 
+        } 
+        catch(Exception e) 
+        { 
+            System.out.println(e); 
+        } 
+    } 
+}
