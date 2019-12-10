@@ -409,120 +409,141 @@ public class Database {
             create.executeUpdate();
             System.out.println("create completed25");
             
-            String sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_Colors_fk, " +
-                    "FOREIGN KEY (car_color), " +
+            String sql;
+            Statement alter;
+            
+            /*String sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_Colors_fk " +
+                    "FOREIGN KEY (car_color) " +
                     "REFERENCES Colors (car_color)";
             Statement alter = conn.createStatement();
             alter.execute(sql);
-            
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_BodyStyles_fk, " +
-                    "FOREIGN KEY (body_style), " +
-                    "REFERENCES BodyStyles (body_style)";
-            alter.execute(sql);
             System.out.println("alter completed");
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_Sunroof_fk, " +
-                    "FOREIGN KEY (sun_roof), " +
-                    "REFERENCES Sunroof (sun_roof)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_BodyStyles_fk " +
+                    "FOREIGN KEY (body_style) " +
+                    "REFERENCES BodyStyles (body_style)";
+            alter = conn.createStatement();
             alter.execute(sql);
-            System.out.println("alter completed2");
+            System.out.println("alter completed2");*/
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_LeatherInterior_fk, " +
-                    "FOREIGN KEY (leather_inerior), " +
-                    "REFERENCES LeatherInterior (leather_interior)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_Sunroof_fk " +
+                    "FOREIGN KEY (sun_roof) " +
+                    "REFERENCES Sunroof (sun_roof)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed3");
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_NewUsed_fk, " +
-                    "FOREIGN KEY (new_used), " +
-                    "REFERENCES NewUsed (new_used)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_LeatherInterior_fk " +
+                    "FOREIGN KEY (leather_inerior) " +
+                    "REFERENCES LeatherInterior (leather_interior)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed4");
             
-            sql = "ALTER TABLE Inventory, " + 
-                    "ADD CONSTRAINT Inventory_FuelTypes_fk, " +
-                    "FOREIGN KEY (fuel_type), " +
-                    "REFERENCES FuelTypes (fuel_type)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_NewUsed_fk " +
+                    "FOREIGN KEY (new_used) " +
+                    "REFERENCES NewUsed (new_used)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed5");
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_Makes_fk, " +
-                    "FOREIGN KEY (car_make), " +
-                    "REFERENCES Makes (car_make)";
+            sql = "ALTER TABLE Inventory " + 
+                    "ADD CONSTRAINT Inventory_FuelTypes_fk " +
+                    "FOREIGN KEY (fuel_type) " +
+                    "REFERENCES FuelTypes (fuel_type)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed6");
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_Models_fk, " +
-                    "FOREIGN KEY (car_model), " +
-                    "REFERENCES Models (car_model)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_Makes_fk " +
+                    "FOREIGN KEY (car_make) " +
+                    "REFERENCES Makes (car_make)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed7");
             
-            sql = "ALTER TABLE Inventory, " +
-                    "ADD CONSTRAINT Inventory_Years_fk, " +
-                    "FOREIGN KEY (car_year), " +
-                    "REFERENCES Years (car_year)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_Models_fk " +
+                    "FOREIGN KEY (car_model) " +
+                    "REFERENCES Models (car_model)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed8");
             
-            sql = "ALTER TABLE ZipLocations, " + 
-                    "ADD CONSTRAINT ZipLocations_States_fk, " + 
-                    "FOREIGN KEY (state_name), " + 
-                    "REFERENCES States (state_name)";
+            sql = "ALTER TABLE Inventory " +
+                    "ADD CONSTRAINT Inventory_Years_fk " +
+                    "FOREIGN KEY (car_year) " +
+                    "REFERENCES Years (car_year)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed9");
             
-            sql = "ALTER TABLE Dependents, ADD CONSTRAINT Dependents_Employees_fk, FOREIGN KEY (employee_id), REFERENCES Employees (employee_id)";
+            sql = "ALTER TABLE ZipLocations " + 
+                    "ADD CONSTRAINT ZipLocations_States_fk " + 
+                    "FOREIGN KEY (state_name) " + 
+                    "REFERENCES States (state_name)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed10");
             
-            sql = "ALTER TABLE CUSTOMERS, ADD CONSTRAINT Customers_ZipLocations_fk, FOREIGN KEY (zip_code), " +
-                    "REFERENCES ZipLocations (zip_code)";
+            sql = "ALTER TABLE Dependents ADD CONSTRAINT Dependents_Employees_fk FOREIGN KEY (employee_id) REFERENCES Employees (employee_id)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed11");
             
-            sql = "ALTER TABLE Employees, ADD CONSTRAINT Employees_ZipLocations_fk, FOREIGN KEY (zip_code), " + 
+            sql = "ALTER TABLE CUSTOMERS ADD CONSTRAINT Customers_ZipLocations_fk FOREIGN KEY (zip_code) " +
                     "REFERENCES ZipLocations (zip_code)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed12");
             
-            sql = "ALTER TABLE EmergencyContacts, ADD CONSTRAINT EmergencyContacts_ZipLocations_fk, FOREIGN KEY (zip_code), " +
+            sql = "ALTER TABLE Employees ADD CONSTRAINT Employees_ZipLocations_fk FOREIGN KEY (zip_code) " + 
                     "REFERENCES ZipLocations (zip_code)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed13");
             
-            sql = "ALTER TABLE EmergencyContacts, CONSTRAINT EmergencyContacts_Employees_fkn, FOREIGN KEY (employee_id), " +
-                    "REFERENCES Employees (employee_id)";
+            sql = "ALTER TABLE EmergencyContacts ADD CONSTRAINT EmergencyContacts_ZipLocations_fk FOREIGN KEY (zip_code) " +
+                    "REFERENCES ZipLocations (zip_code)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed14");
-           
-            sql = "ALTER TABLE PhoneNumbers, " +
-                    "ADD CONSTRAINT PhoneNumbers_Customers_fk, " +
-                    "FOREIGN KEY (cust_id), " +
-                    "REFERENCES Customers (cust_id)";
+            
+            sql = "ALTER TABLE EmergencyContacts CONSTRAINT EmergencyContacts_Employees_fkn FOREIGN KEY (employee_id) " +
+                    "REFERENCES Employees (employee_id)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed15");
-            
-            sql = "ALTER TABLE PhoneNumbers, " +
-                    "ADD CONSTRAINT PhoneNumbers_Employees_fk, " +
-                    "FOREIGN KEY (employee_id), " +
-                    "REFERENCES Employees (employee_id)";
+           
+            sql = "ALTER TABLE PhoneNumbers " +
+                    "ADD CONSTRAINT PhoneNumbers_Customers_fk " +
+                    "FOREIGN KEY (cust_id) " +
+                    "REFERENCES Customers (cust_id)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed16");
             
-            sql = "ALTER TABLE PhoneNumbers, " +
-                    "ADD CONSTRAINT PhoneNumbers_EmergencyContacts_fk, " +
-                    "FOREIGN KEY (emer_cont_id), " +
-                    "REFERENCES EmergencyContacts (emer_cont_id)";
+            sql = "ALTER TABLE PhoneNumbers " +
+                    "ADD CONSTRAINT PhoneNumbers_Employees_fk " +
+                    "FOREIGN KEY (employee_id) " +
+                    "REFERENCES Employees (employee_id)";
+            alter = conn.createStatement();
             alter.execute(sql);
             System.out.println("alter completed17");
+            
+            sql = "ALTER TABLE PhoneNumbers " +
+                    "ADD CONSTRAINT PhoneNumbers_EmergencyContacts_fk " +
+                    "FOREIGN KEY (emer_cont_id) " +
+                    "REFERENCES EmergencyContacts (emer_cont_id)";
+            alter = conn.createStatement();
+            alter.execute(sql);
+            System.out.println("alter completed18");
             
         } catch (Exception e) {
             System.out.println("error");
